@@ -1,15 +1,18 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="title-panel">
+    <h1>PianoType</h1>
+  </div>
+  <Keyboard/>
+
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Keyboard from './components/Keyboard'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Keyboard
   }
 }
 </script>
@@ -20,7 +23,17 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #fff;
-  margin-top: 60px;
+}
+
+.title-panel {
+  background: #333;
+  width: 100%;
+  display: flex;
+  justify-content: left; /* align horizontal */
+  box-shadow: 0 0 10px black;
+  align-items: center; /* align vertical */
+  padding-left: 50px;
+  margin-bottom: 50px;
 }
 
 </style>

@@ -2,7 +2,12 @@ body {
     margin: 0;
     background-color: #222;
     color: #fff;
-    font-family: Lato, Avenir, Helvetica, Arial, sans-serif;
+    font-family: Roboto, Avenir, Helvetica, Arial, sans-serif;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap')
+h1 {
+    font-weight: 500;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
