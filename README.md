@@ -1,29 +1,24 @@
-# README #
+# pianotype
 
-This README would normally document whatever steps are necessary to get your application up and running.
+## Project setup
+```
+npm install
+```
 
-### What is this repository for? ###
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+### Compiles and minifies for production
+```
+npm run build
+```
 
-### How do I get set up? ###
+### Lints and fixes files
+```
+npm run lint
+```
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
-
-### Contribution guidelines ###
-
-* Writing tests
-* Code review
-* Other guidelines
-
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
