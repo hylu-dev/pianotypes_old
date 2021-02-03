@@ -1,5 +1,5 @@
 <template>
-    <Key :instrument="getPiano"></Key>
+    <Key :instrument="createInstrument('acoustic_grand_piano')"></Key>
 </template>
 
 <script>
@@ -17,14 +17,16 @@ export default {
             ac: new AudioContext(),
         }
     },
-    methods: {},
-    computed: {
-        getPiano() {
-            return this.sf.instrument(this.ac, 'acoustic_grand_piano', {
+    methods: {
+            createInstrument(instrument) {
+            console.log("test")
+            console.log(instrument);
+            return this.sf.instrument(this.ac, instrument, {
                 soundfont: 'FluidR3_GM'
                 });
         }
-    }
+    },
+    computed: {}
 }
 </script>
 
