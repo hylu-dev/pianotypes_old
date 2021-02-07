@@ -1,0 +1,10 @@
+[
+    {"note": "C4", "instrument": "acoustic_grand_piano", "binding": "q"},
+    {"note": "D4", "instrument": "acoustic_grand_piano", "binding": "w"},
+    {"note": "E4", "instrument": "acoustic_grand_piano", "binding": "e"},
+    {"note": "F4", "instrument": "acoustic_grand_piano", "binding": "r"},
+    {"note": "G4", "instrument": "acoustic_grand_piano", "binding": "t"},
+    {"note": "A4", "instrument": "acoustic_grand_piano", "binding": "y"},
+    {"note": "B4", "instrument": "acoustic_grand_piano", "binding": "u"},
+    {"note": "C5", "instrument": "acoustic_grand_piano", "binding": "i"}
+]
