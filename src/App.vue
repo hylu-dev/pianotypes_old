@@ -36,7 +36,7 @@ export default {
     width: 100%;
     display: flex;
     justify-content: left; /* align horizontal */
-    box-shadow: 0 0 10px black;
+    box-shadow: 0 0 10px #111;
     align-items: center; /* align vertical */
     padding-left: 50px;
     margin-bottom: 50px;

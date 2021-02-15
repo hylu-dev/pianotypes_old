@@ -1,6 +1,6 @@
 <template>
     <div class="key-board">
-        <Key v-for="key in keyList" :key="key" :keyConfig="key" @pressed="pressKey"></Key>
+        <Key v-for="key in keyList" :key="key" :keyConfig="key" @pressed="pressKey" @released="releaseKey"></Key>
     </div>
 
 </template>
@@ -16,22 +16,30 @@ export default {
     },
     props: [],
     data() {
+        let ac = new AudioContext()
         return {
-            instrument: require('soundfont-player').instrument(new AudioContext(), 'acoustic_grand_piano', {
+            ac: ac,
+            instrument: require('soundfont-player').instrument(ac, 'acoustic_grand_piano', {
                 soundfont: 'FluidR3_GM'
                 }),
-            keyList: kbjson //grabs key configs
+            keyList: kbjson, //grabs keyboard json file
+            isPedal: false
         }
     },
     methods: {
-        pressKey({note}) {
+        updateKeysPressed(e) {
+            console.log(e)
+            this.isPressed = true
+        },
+        pressKey({note, e}) {
+            console.log(e.key, e.type)
             this.instrument.then(function (instr) {
             instr.play(note, 0, 1);
             })
         },
-        releaseKey({note}) {
+        releaseKey(/*{note}*/) {
             this.instrument.then(function (instr) {
-            instr.stop(note, 0, 1);
+            instr.stop();
             })
         }
     },
@@ -41,6 +49,7 @@ export default {
 
 <style scoped>
     .key-board {
+        height: 280px;
         display: flex;
         flex-flow: row;
     }
