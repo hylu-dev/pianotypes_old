@@ -1,5 +1,7 @@
 <template>
-    <div :class="keyType"  @mousedown="emitPressed($event)" @mouseup="emitReleased($event)"></div>
+    <div :class="applyKeyStyles"  @mousedown="emitPressed($event)" @mouseup="emitReleased($event)">
+        <h1 v-if="showBindings">{{keyConfig.binding}}</h1>
+    </div>
 </template>
 
 <script>
@@ -7,7 +9,8 @@ export default {
     name: 'Key',
     created() {
         window.addEventListener('keydown', this.emitPressed), // window event listener to catch global keyboard events
-        window.addEventListener('keyup', this.emitReleased)
+        window.addEventListener('keyup', this.emitReleased),
+        window.addEventListener('blur', this.clearKeyStates)
     },
     emits: ['pressed', 'released'],
     props: {
@@ -18,7 +21,8 @@ export default {
     },
     data() { 
         return {
-            keyPressed: false
+            keyPressed: false,
+            showBindings: true
         }
     },
     methods: {
@@ -35,10 +39,14 @@ export default {
                 this.$emit('released', { note: this.keyConfig.note, binding: this.keyConfig.binding, e: e });
                 this.keyPressed = false;
             }
+        },
+        clearKeyStates() {
+            this.$emit('released');
+            this.keyPressed = false;
         }
     },
     computed: {
-        keyType() {
+        applyKeyStyles() {
             let classBinding = {}
             let regex = /[cCdDfFgGaA#]/g;
             this.keyConfig.note.search(regex) >= 0 ? classBinding["offset-key"] = true : classBinding["offset-key"] = false; // offset margin if key precedes|is a black key
@@ -62,12 +70,19 @@ export default {
     }
 
     .white-key {
+        display: flex;
+        justify-content: center;
         width:70px;
-        border-left: 2px solid transparent;
-        border-right: 2px solid transparent;
+        border-left: 3px solid transparent;
+        border-right: 3px solid transparent;
         background: white;
         background-clip: padding-box;
         z-index: 0;
+    }
+
+    .white-key h1 {
+        color: rgb(224, 224, 224);
+        align-self: flex-end;
     }
 
     .white-key:hover {
@@ -81,10 +96,17 @@ export default {
     }
 
     .black-key {
+        display: flex;
+        justify-content: center;
         width: 40px;
         height: 50%;
         background: rgb(28, 28, 28);
         z-index: 1;
+    }
+
+    .black-key h1 {
+        color: rgb(66, 66, 66);
+        align-self: flex-end;
     }
 
     .black-key:hover {

@@ -1,5 +1,5 @@
 <template>
-    <div class="key-board">
+    <div class="keyboard">
         <Key v-for="key in keyList" :key="key" :keyConfig="key" @pressed="pressKey" @released="releaseKey"></Key>
     </div>
 
@@ -37,7 +37,7 @@ export default {
             instr.play(note, 0, 1);
             })
         },
-        releaseKey(/*{note}*/) {
+        releaseKey() {
             this.instrument.then(function (instr) {
             instr.stop();
             })
@@ -48,7 +48,7 @@ export default {
 </script>
 
 <style scoped>
-    .key-board {
+    .keyboard {
         height: 280px;
         display: flex;
         flex-flow: row;
