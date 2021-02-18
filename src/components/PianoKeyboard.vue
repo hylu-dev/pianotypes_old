@@ -1,18 +1,18 @@
 <template>
     <div class="keyboard">
-        <Key v-for="key in keyList" :key="key" :keyConfig="key" @pressed="pressKey" @released="releaseKey"></Key>
+        <piano-key v-for="key in keyList" :key="key" :keyConfig="key" @pressed="pressKey" @released="releaseKey"></piano-key>
     </div>
 
 </template>
 
 <script>
-import Key from './Key'
+import PianoKey from './PianoKey'
 import kbjson from '../json/keyboard.json'
 
 export default {
-    name: 'Keyboard',
+    name: 'piano-keyboard',
     components: {
-        Key
+        PianoKey
     },
     props: [],
     data() {
@@ -27,15 +27,8 @@ export default {
         }
     },
     methods: {
-        updateKeysPressed(e) {
-            console.log(e)
-            this.isPressed = true
-        },
-        pressKey({note, e}) {
-            console.log(e.key, e.type)
-            this.instrument.then(function (instr) {
-            instr.play(note, 0, 1);
-            })
+        pressKey({note}) {
+            this.instrument.then(function (instr) { instr.play(note, 0, 1); })
         },
         releaseKey() {
             this.instrument.then(function (instr) {
@@ -49,7 +42,7 @@ export default {
 
 <style scoped>
     .keyboard {
-        height: 280px;
+        height: var(--piano-height);
         display: flex;
         flex-flow: row;
     }

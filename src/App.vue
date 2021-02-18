@@ -3,14 +3,14 @@
     <h1>PianoType</h1>
   </div>
   <div class="keyboard-wrapper">
-    <keyboard></keyboard>
+    <piano-keyboard></piano-keyboard>
   </div>
   
 
 </template>
 
 <script>
-import Keyboard from './components/Keyboard'
+import PianoKeyboard from './components/PianoKeyboard'
 
 export default {  
   name: 'App',
@@ -18,7 +18,7 @@ export default {
     return {}
   },
   components: {
-    Keyboard
+    PianoKeyboard
   }
 }
 </script>
@@ -28,7 +28,6 @@ export default {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
-    color: #fff;
   }
 
   .title-panel {
@@ -38,6 +37,7 @@ export default {
     justify-content: left; /* align horizontal */
     box-shadow: 0 0 10px #111;
     align-items: center; /* align vertical */
+    box-sizing: border-box;
     padding-left: 50px;
     margin-bottom: 50px;
   }
@@ -46,7 +46,7 @@ export default {
     position: absolute;
     display: flex;
     justify-content: center;
-    width: 100vw;
+    width: 100%;
     bottom: 0;
   }
 

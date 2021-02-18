@@ -1,7 +1,22 @@
+:root {
+    --primary-text-colour: white;
+    --secondary-text-colour: #333;
+    --main-bg-colour: #222;
+
+    /* piano-styling */
+    --piano-height: 20vh;
+    --white-key-colour: white;
+    --black-key-colour: rgb(30, 30, 30);
+    --white-key-width: calc(var(--piano-height)/3.3);
+    --white-key-border-width: calc(var(--piano-height)/100);
+    --black-key-width: calc(var(--white-key-width)/2);
+    --key-label-size: calc(var(--piano-height)/9);
+  }
+
 body {
     margin: 0;
-    background-color: #222;
-    color: #fff;
+    background-color: var(--main-bg-colour);
+    color: var(--primary-text-colour);
     font-family: Roboto, Avenir, Helvetica, Arial, sans-serif;
 }
 
