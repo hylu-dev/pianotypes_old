@@ -1,16 +1,22 @@
 <template>
     <div class="keyboard">
-        <piano-key v-for="key in keyList" :key="key" :keyConfig="key" @pressed="pressKey" @released="releaseKey"></piano-key>
+        <piano-key v-for="(value, key) in sharedKeyStates.keyboard" :key="value" :note="key" :id="key" @pressed="clickPressKey" @released="clickReleaseKey"></piano-key>
     </div>
 
 </template>
 
 <script>
-import PianoKey from './PianoKey'
-import kbjson from '../json/keyboard.json'
+import PianoKey from './PianoKey'   
+import KeyStatesStore from '../stores/KeyStatesStore'
+import KeyBindingsStore from '../stores/KeyBindingsStore'
 
 export default {
     name: 'piano-keyboard',
+    created() {
+        window.addEventListener('keydown', this.pressKey),
+        window.addEventListener('keyup', this.releaseKey),
+        window.addEventListener('blur', this.clearKeyStates)
+    },
     components: {
         PianoKey
     },
@@ -22,18 +28,42 @@ export default {
             instrument: require('soundfont-player').instrument(ac, 'acoustic_grand_piano', {
                 soundfont: 'FluidR3_GM'
                 }),
-            keyList: kbjson, //grabs keyboard json file
-            isPedal: false
+            isPedal: false,
+            sharedKeyStates: KeyStatesStore.state,
+            sharedBindingState: KeyBindingsStore.state
         }
     },
     methods: {
-        pressKey({note}) {
-            this.instrument.then(function (instr) { instr.play(note, 0, 1); })
+        pressKey(e) {
+            if (e.repeat) { return }
+            let note = KeyBindingsStore.getKeyNoteBinding(e.key);
+            if (note) {
+                this.instrument.then(function (instr) { instr.play(note, 0, 1); });
+                KeyStatesStore.updateKeyPressed(note);
+            }
         },
-        releaseKey() {
-            this.instrument.then(function (instr) {
-            instr.stop();
-            })
+        releaseKey(e) {
+            if (e.repeat) { return }
+            let note = KeyBindingsStore.getKeyNoteBinding(e.key);
+            if (note) {
+                this.instrument.then(function (instr) { instr.stop(); })
+                KeyStatesStore.updateKeyReleased(note);
+            }
+        },
+        clickPressKey(note) {
+            if (note) {
+                this.instrument.then(function (instr) { instr.play(note, 0, 1); });
+                KeyStatesStore.updateKeyPressed(note);
+            }
+        },
+        clickReleaseKey(note) {
+            if (note) {
+                this.instrument.then(function (instr) { instr.stop(); })
+                KeyStatesStore.updateKeyReleased(note);
+            }
+        },
+        clearKeyStates() {
+            KeyStatesStore.resetKeyStates();
         }
     },
     computed: {}

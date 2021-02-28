@@ -1,70 +1,46 @@
 <template>
-    <div :class="applyKeyStyles"  @mouseover="isHover=true" @mouseout="isHover=false" @mouseenter="emitClickDown($event)" @mousedown="emitClickDown($event)" @mouseup="emitClickRelease($event)" @mouseleave="emitClickRelease($event)">
-        <h1 v-if="showBindings">{{keyConfig.binding}}</h1>
+    <div :class="getKeyClasses"  @mouseover="isHover=true" @mouseout="isHover=false" @mouseenter="emitKeyPress" @mousedown="emitKeyPress" @mouseup="emitKeyRelease" @mouseleave="emitKeyRelease">
+        <h1 v-if="showBindings">{{ binding }}</h1>
     </div>
 </template>
 
 <script>
+import KeyStatesStore from '../stores/KeyStatesStore'
+import KeyBindingsStore from '../stores/KeyBindingsStore'
+
 export default {
     name: 'piano-key',
-    created() {
-        window.addEventListener('keydown', this.emitKeyDown),
-        window.addEventListener('keyup', this.emitKeyRelease),
-        window.addEventListener('blur', this.clearKeyStates)
-    },
     emits: ['pressed', 'released'],
     props: {
-        keyConfig: {
-            type: Object,
-            required: true
-        }
+        note: String
     },
     data() { 
         return {
-            isPressed: false,
             isHover: false,
-            showBindings: true
+            showBindings: true,
+            sharedKeyStates: KeyStatesStore.state,
+            sharedBindingState: KeyBindingsStore.state
         }
     },
     methods: {
-        emitClickDown(e) {
+        emitKeyPress(e) {
             if (e.buttons > 0) {
-                this.$emit('pressed', { note: this.keyConfig.note, binding: this.keyConfig.binding, e: e });
-                this.isPressed = true;
+                this.$emit('pressed', this.note);
             }
-        },
-        emitClickRelease(e) {
-            if (e.type == "mouseup" || e.buttons > 0) {
-                this.$emit('released');
-                this.isPressed = false;
-            }
-        },
-        emitKeyDown(e) {
-            if (e.repeat) { return } // Disable automatic keypress when key is held
-            if (this.keyConfig.binding.includes(e.key.toLowerCase())) {
-                this.$emit('pressed', { note: this.keyConfig.note, binding: this.keyConfig.binding, e: e });
-                this.isPressed = true;
-            }
-
         },
         emitKeyRelease(e) {
-            if (this.keyConfig.binding.includes(e.key.toLowerCase())) {
-                this.$emit('released');
-                this.isPressed = false;
+            if (e.type == "mouseup" || e.buttons > 0) {
+                this.$emit('released', this.note);
             }
-        },
-        clearKeyStates() {
-            this.$emit('released');
-            this.isPressed = false;
         }
     },
     computed: {
-        applyKeyStyles() {
+        getKeyClasses() {
             let classBinding = {}
             let regex = /[cCdDfFgGaA#]/g;
-            this.keyConfig.note.search(regex) >= 0 ? classBinding["offset-key"] = true : classBinding["offset-key"] = false; // offset margin if key precedes|is a black key
+            this.note.search(regex) >= 0 ? classBinding["offset-key"] = true : classBinding["offset-key"] = false; // offset margin if key precedes|is a black key
             // add styles depending on key colour
-            if (this.keyConfig.note.includes('#')) {
+            if (this.note.includes('#')) {
                 classBinding['black-key'] = true;
                 classBinding['black-key--hover'] = this.isHover;
                 classBinding['black-key--pressed'] = this.isPressed;
@@ -74,6 +50,15 @@ export default {
                 classBinding['white-key--pressed'] = this.isPressed;
             }
             return classBinding
+        },
+        isPressed: function() {
+            if (this.sharedKeyStates.keyboard[this.note].isPressed) {
+                return true;
+            }
+            return false;
+        },
+        binding: function() {
+            return KeyBindingsStore.getNoteKeyBinding(this.note);
         }
     }
 }
@@ -104,12 +89,12 @@ export default {
     }
 
     .white-key--hover {
-        background: lightcyan;
+        background: var(--white-key-hover-colour);
         background-clip: padding-box;
     }
 
     .white-key--pressed {
-        background: palegreen;
+        background: var(--white-key-active-colour);
         background-clip: padding-box;
     }
 
@@ -123,7 +108,7 @@ export default {
     }
 
     .black-key h1 {
-        color: rgba(255, 255, 255, 0.2);
+        color: rgba(255, 255, 255, 0.3);
         align-self: flex-end;
         user-select: none;
         font-size: var(--key-label-size);
@@ -131,10 +116,10 @@ export default {
     }
 
     .black-key--hover {
-        background: slategray;
+        background: var(--black-key-hover-colour);
     }
 
     .black-key--pressed {
-        background: steelblue;
+        background: var(--black-key-active-colour);
     }
 </style>

@@ -4,11 +4,15 @@
     --main-bg-colour: #222;
 
     /* piano-styling */
-    --piano-height: 20vh;
+    --piano-height: 16vh;
     --white-key-colour: white;
-    --black-key-colour: rgb(30, 30, 30);
+    --white-key-hover-colour: lightcyan;
+    --white-key-active-colour: palegreen;
     --white-key-width: calc(var(--piano-height)/3.3);
     --white-key-border-width: calc(var(--piano-height)/100);
+    --black-key-colour: rgb(30, 30, 30);
+    --black-key-hover-colour: slategrey;
+    --black-key-active-colour: steelblue;
     --black-key-width: calc(var(--white-key-width)/2);
     --key-label-size: calc(var(--piano-height)/9);
   }
