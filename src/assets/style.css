@@ -4,7 +4,7 @@
     --main-bg-colour: #222;
 
     /* piano-styling */
-    --piano-height: 16vh;
+    --piano-height: 20vh;
     --white-key-colour: white;
     --white-key-hover-colour: lightcyan;
     --white-key-active-colour: palegreen;

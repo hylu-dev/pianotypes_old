@@ -1,8 +1,6 @@
 <template>
-    <!-- <transition name="ribbon"> -->
-        <div v:if="keyActive" :class="getRibbonClasses" :style="{ left: xPos, bottom: yPos+'px', height: height+'px' }"></div>
-    <!-- </transition> -->
-    <div :style="{ width: 50+'px', height: 50+'px', backgroundColor:'grey' }" @click="keyActive = !keyActive"> Test </div>
+    <div v:if="keyActive" :class="getRibbonClasses" :style="{ bottom: yPos+'px', height: height+'px' }"></div>
+    <!-- <div :style="{ width: 50+'px', height: 50+'px', backgroundColor:'grey' }" @click="keyActive = !keyActive"> Test </div> -->
 </template>
 
 <script>
@@ -12,8 +10,7 @@ export default {
         return {
             id: null,
             timer: null,
-            xPos: '40%',
-            yPos: 100,
+            yPos: 0,
             height: 0,
             keyActive: false,
             speed: 5 // move at 1000/<speed>px per second
@@ -52,17 +49,6 @@ export default {
 <style scoped>
     .ribbon {
         position: absolute;
-        box-sizing: border-box;
-        width: 200px;
+        width: inherit;
     }
-
-    .white-ribbon {
-        background-color: var(--white-key-active-colour);;
-        width: var(--white-key-width);
-    }
-
-    .black-ribbon {
-        background-color: var(--black-key-active-colour);;
-    }
-
 </style>

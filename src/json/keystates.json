@@ -1,4 +1,7 @@
 {
+    "C3": { "isPressed": false },
+    "C#3": { "isPressed": false },
+    "D3": { "isPressed": false },
     "D#3": { "isPressed": false },
     "E3": { "isPressed": false },
     "F3": { "isPressed": false },
@@ -20,5 +23,9 @@
     "A4": { "isPressed": false },
     "A#4": { "isPressed": false },
     "B4": { "isPressed": false },
-    "C5": { "isPressed": false }
+    "C5": { "isPressed": false },
+    "C#5": { "isPressed": false },
+    "D5": { "isPressed": false },
+    "D#5": { "isPressed": false },
+    "E5": { "isPressed": false }
 }

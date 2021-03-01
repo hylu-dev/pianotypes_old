@@ -1,42 +1,38 @@
 <template>
     <div class="midi-panel">
-        <midi-ribbon v-for="ribbon in ribbons" :key="ribbon"></midi-ribbon>
+        <ribbon-shooter v-for="(value, key) in sharedKeyState.keyStates" :key="value" :note="key"></ribbon-shooter>
     </div>
 </template>
 
 <script>
-import MidiRibbon from './MidiRibbon'
+
+import RibbonShooter from './RibbonShooter'
+import KeyStateStore from '../stores/KeyStateStore'
 
 export default {
     name: 'midi-panel',
     components: {
-        MidiRibbon
+        RibbonShooter
     },
     data() {
         return {
-            ribbons: [0] //each contained ribbon has note info
+            sharedKeyState: KeyStateStore.state
         }
     },
     methods: {
-        createRibbon(e) {
-            console.log(e);
-        },
-        releaseRibbon(e) {
-            console.log(e);
-        }
     },
-    computed: {
-
-    }
+    computed: {}
 }
 </script>
 
 <style scoped>
     .midi-panel {
-        display: block;
+        display: flex;
+        flex-flow: row;
         background-color: rgb(22, 22, 22);
         width: 100vw;
         height: 70vh;
+        align-items: flex-end;
+        justify-content: center;
     }
-
 </style>
