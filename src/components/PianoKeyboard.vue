@@ -20,7 +20,6 @@ export default {
     components: {
         PianoKey
     },
-    props: [],
     data() {
         let ac = new AudioContext()
         return {

@@ -21,7 +21,7 @@ body {
     margin: 0;
     background-color: var(--main-bg-colour);
     color: var(--primary-text-colour);
-    font-family: Roboto, Avenir, Helvetica, Arial, sans-serif;
+    font-family: Lato, Roboto, Helvetica, Arial, sans-serif;
 }
 
 h1 {

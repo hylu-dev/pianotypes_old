@@ -1,6 +1,6 @@
 <template>
   <div class="title-panel">
-    <h1>PianoType</h1>
+    <h1>pianotype</h1>
   </div>
 
   <div class="midi-keyboard-container">
@@ -42,13 +42,12 @@ export default {
   }
 
   .title-panel {
-    background: #333;
+    background: #222;
     width: 100%;
-    height: 7vh;
+    height: 8vh;
     font-size: calc(1vh*2);
     display: flex;
     justify-content: left; /* align horizontal */
-    box-shadow: 0 0 10px #111;
     align-items: center; /* align vertical */
     box-sizing: border-box;
     padding-left: 3%;
@@ -62,6 +61,7 @@ export default {
     justify-content: center;
     width: 100%;
     bottom: 0;
+    z-index: -1;
   }
 
   .keyboard-wrapper {

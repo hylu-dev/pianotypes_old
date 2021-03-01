@@ -31,7 +31,7 @@ export default {
         flex-flow: row;
         background-color: rgb(22, 22, 22);
         width: 100vw;
-        height: 70vh;
+        height: 100vh;
         align-items: flex-end;
         justify-content: center;
     }

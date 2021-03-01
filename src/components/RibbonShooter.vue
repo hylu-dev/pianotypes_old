@@ -1,11 +1,10 @@
 <template>
-    <div :class="getRibbonClasses">
-        <midi-ribbon></midi-ribbon>
+    <div :class="ribbonShooterClasses">
+        <midi-ribbon v-for="(value, id) in ribbons" :key="id" :id="id" :isWhiteKey="isWhiteKey" :isReleased="isPressed" @destroy="destroyRibbon"></midi-ribbon>
     </div>
 </template>
 
 <script>
-
 import MidiRibbon from './MidiRibbon'
 import KeyStateStore from '../stores/KeyStateStore'
 
@@ -19,17 +18,21 @@ export default {
     },
     data() {
         return {
+            ids: 0,
             sharedKeyState: KeyStateStore.state,
-            ribbons: Object,
-            idCounter: 0
+            ribbons: {}
         }
     },
-    methods: {},
+    methods: {
+        destroyRibbon(id) {
+            delete this.ribbons[id];
+        }
+    },
     computed: {
         isWhiteKey: function() {
             return this.note.includes('#') ? false : true;
         },
-        getRibbonClasses() {
+        ribbonShooterClasses: function() {
             let classBinding = {}
             const regex = /[cCdDfFgGaA#]/g;
             this.note.search(regex) >= 0 ? classBinding["offset-key"] = true : classBinding["offset-key"] = false; // offset margin if key precedes|is a black key
@@ -53,8 +56,8 @@ export default {
     watch: {
         isPressed(bool) {
             if (bool) {
-                this.ribbons[this.idCounter] = true;
-                this.idCounter++;
+                this.ribbons[this.ids] = this.isWhiteKey;
+                this.ids++;
             }
         }
     }
@@ -70,30 +73,22 @@ export default {
         display: flex;
         justify-content: center;
         width: calc(var(--white-key-width) + var(--white-key-border-width));
-        box-sizing: border-box;
     }
 
     .white-key--glow {
         box-shadow: 0 0 10px 2px greenyellow;
     }
 
-    .white-ribbon {
-        background-color: var(--white-key-active-colour);;
-    }
-
     .black-key {
         display: flex;
         justify-content: center;
         width: var(--black-key-width);
-        box-sizing: border-box;
     }
 
     .black-key--glow {
-        box-shadow: 0 -2px 7px 3px royalblue;
+        box-shadow: 0 -2px 10px 3px royalblue;
     }
 
-    .black-ribbon {
-        background-color: var(--black-key-active-colour);;
-    }
+
 
 </style>
