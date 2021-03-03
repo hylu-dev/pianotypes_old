@@ -109,6 +109,7 @@ export default {
         height: 50%;
         background: var(--black-key-colour);
         z-index: 3;
+        box-shadow: 0px 1px 3px rgba(0,0,0,0.5);
     }
 
     .black-key h1 {

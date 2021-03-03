@@ -1,5 +1,10 @@
 {
-    "C3": { "isPressed": false },
+    "G2": { "isPressed": false },
+    "G#2": { "isPressed": false },
+    "A2": { "isPressed": false },
+    "A#2": { "isPressed": false },
+    "B2": { "isPressed": false },
+    "C2": { "isPressed": false },
     "C#3": { "isPressed": false },
     "D3": { "isPressed": false },
     "D#3": { "isPressed": false },
@@ -27,5 +32,13 @@
     "C#5": { "isPressed": false },
     "D5": { "isPressed": false },
     "D#5": { "isPressed": false },
-    "E5": { "isPressed": false }
+    "E5": { "isPressed": false },
+    "F5": { "isPressed": false },
+    "F#5": { "isPressed": false },
+    "G5": { "isPressed": false },
+    "G#5": { "isPressed": false },
+    "A5": { "isPressed": false },
+    "A#5": { "isPressed": false },
+    "B5": { "isPressed": false },
+    "C6": { "isPressed": false }
 }

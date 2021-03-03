@@ -16,7 +16,8 @@ export default {
             height: 0,
             speed: 1, // move at 1000/<speed>px per second
             maxHeight: window.innerHeight,
-            active: true
+            active: true,
+            released: false
         }
     },
     props: {
@@ -40,6 +41,7 @@ export default {
             classBinding['ribbon'] = true;
             classBinding['white-ribbon'] = this.isWhiteKey;
             classBinding['black-ribbon'] = !this.isWhiteKey;
+            classBinding['pressed'] = !this.released;
             return classBinding;
         },
         styleObject: function() {
@@ -51,6 +53,7 @@ export default {
     },
     watch: {
         isReleased() {
+            this.released = true;
             this.releaseRibbon();
         },
         yPos() {
@@ -70,6 +73,10 @@ export default {
         box-sizing: none;
         bottom: -6px;
         box-shadow: 0 0 5px 1px #111;
+    }
+
+    .pressed {
+        box-shadow: inset 0 0 10px 2px goldenrod;
     }
 
     .white-ribbon {

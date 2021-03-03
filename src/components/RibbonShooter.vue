@@ -85,7 +85,7 @@ export default {
     }
 
     .white-key--glow {
-        box-shadow: 0 0 12px 6px greenyellow;
+        box-shadow: 0 0 12px 6px goldenrod;
     }
 
     .black-key {
@@ -93,7 +93,7 @@ export default {
     }
 
     .black-key--glow {
-        box-shadow: 0 -2px 12px 6px royalblue;
+        box-shadow: 0 -2px 12px 6px goldenrod;
     }
 
 

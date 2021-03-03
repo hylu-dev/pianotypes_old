@@ -4,7 +4,7 @@
     --main-bg-colour: #222;
 
     /* piano-styling */
-    --piano-height: 20vh;
+    --piano-height: calc(8vw);
     --white-key-colour: rgb(240, 240, 240);
     --white-key-hover-colour: lightcyan;
     --white-key-active-colour: rgb(139, 216, 139);
@@ -23,11 +23,12 @@ body {
     margin: 0;
     background-color: var(--main-bg-colour);
     color: var(--primary-text-colour);
-    font-family: Lato, Helvetica, Arial, sans-serif;
+    font-family: 'Source Code Pro', Helvetica, Arial, sans-serif;
+    font-weight: 400;
 }
 
 h1 {
-    font-family: Cormorant, 'Space Mono', Helvetica, Arial, sans-serif;
+    font-family: Cormorant, Helvetica, Arial, sans-serif;
     font-weight: 600;
 }
 
