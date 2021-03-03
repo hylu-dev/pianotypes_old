@@ -1,5 +1,5 @@
 <template>
-    <div ref="pianokey" :class="getKeyClasses"  @mouseover="isHover=true" @mouseout="isHover=false" @mouseenter="emitKeyPress" @mousedown="emitKeyPress" @mouseup="emitKeyRelease" @mouseleave="emitKeyRelease">
+    <div :class="getKeyClasses"  @mouseover="isHover=true" @mouseout="isHover=false" @mouseenter="emitKeyPress" @mousedown="emitKeyPress" @mouseup="emitKeyRelease" @mouseleave="emitKeyRelease">
         <h1 v-if="showBindings">{{ binding }}</h1>
     </div>
 </template>
@@ -88,7 +88,8 @@ export default {
         align-self: flex-end;
         user-select: none;
         font-size: var(--key-label-size);
-        font-family: Lato, Helvetica, Arial, sans-serif;
+        font-family: var(--key-label-font-family);
+        font-weight: var(--key-label-font-weight);
     }
 
     .white-key--hover {
@@ -112,10 +113,11 @@ export default {
 
     .black-key h1 {
         color: rgba(255, 255, 255, 0.3);
-        align-self: flex-end;
         user-select: none;
+        align-self: flex-end;
         font-size: var(--key-label-size);
-        font-family: Lato, Helvetica, Arial, sans-serif;
+        font-family: var(--key-label-font-family);
+        font-weight: var(--key-label-font-weight);
     }
 
     .black-key--hover {

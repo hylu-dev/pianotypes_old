@@ -42,16 +42,23 @@ export default {
   }
 
   .title-panel {
+    display: flex;
     background: #222;
     width: 100%;
-    height: 8vh;
-    font-size: calc(1vh*2);
-    display: flex;
-    justify-content: left; /* align horizontal */
+    height: 60px;
+    font-size: 1rem;
+    justify-content: center; /* align horizontal */
     align-items: center; /* align vertical */
-    box-sizing: border-box;
-    padding-left: 3%;
-    margin-bottom: 50px;
+    padding-bottom: 5px;
+    box-shadow: 0 0 10px black;
+    user-select: none;
+  }
+
+  @media only screen and (max-width: 600px) {
+    .title-panel {
+      padding-left: 5%;
+      justify-content: left;
+    }
   }
 
   .midi-keyboard-container {
@@ -65,11 +72,15 @@ export default {
   }
 
   .keyboard-wrapper {
-    align-self: center;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    box-shadow: 0 0 10px black;
   }
 
   .ribbon-panel-wrapper {
-    align-self: center;
+    display: flex;
+    justify-content: center;
   }
 
 

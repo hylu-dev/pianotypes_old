@@ -1,6 +1,6 @@
 <template>
     <div class="ribbon-panel">
-        <ribbon-shooter class="ribbon-shooter" v-for="(value, key) in sharedKeyState.keyStates" :key="value" :note="key"></ribbon-shooter>
+        <ribbon-shooter v-for="(value, key) in sharedKeyState.keyStates" :key="value" :note="key"></ribbon-shooter>
     </div>
 </template>
 
@@ -34,11 +34,5 @@ export default {
         height: 100vh;
         align-items: flex-end;
         justify-content: center;
-    }
-
-    .ribbon-shooter {
-        position: relative;
-        height: 0;
-        z-index: 2;
     }
 </style>

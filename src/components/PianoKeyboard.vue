@@ -1,8 +1,7 @@
 <template>
-    <div class="keyboard">
+    <div ref="keyboard" class="keyboard" :style="{}">
         <piano-key v-for="(value, key) in sharedKeyState.keyStates" :key="value" :note="key" :id="key" @pressed="clickPressKey" @released="clickReleaseKey"></piano-key>
     </div>
-
 </template>
 
 <script>
@@ -17,6 +16,9 @@ export default {
         window.addEventListener('keyup', this.releaseKey),
         window.addEventListener('blur', this.clearKeyStates)
     },
+    mounted() {
+        this.isMounted = true
+    },
     components: {
         PianoKey
     },
@@ -29,7 +31,8 @@ export default {
                 }),
             isPedal: false,
             sharedKeyState: KeyStateStore.state,
-            sharedBindingState: KeyBindingStore.state
+            sharedBindingState: KeyBindingStore.state,
+            isMounted: false
         }
     },
     methods: {
@@ -65,7 +68,11 @@ export default {
             KeyStateStore.resetKeyStates();
         }
     },
-    computed: {}
+    computed: {
+        proportionalHeight: function() {
+            return this.isMounted ? this.$refs.keyboard.clientWidth/5.5 : 0;
+        }
+    }
 }
 </script>
 
