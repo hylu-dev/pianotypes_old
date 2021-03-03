@@ -1,5 +1,5 @@
 <template>
-    <div style="width: 50px; margin-right: 2%;">
+    <div style="position: absolute; bottom: 5%;left: 5%;">
         <p>Pedal On: {{isPedal}}</p>
     </div>
     <div ref="keyboard" class="keyboard" :style="{}">
