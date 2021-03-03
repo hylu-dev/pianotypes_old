@@ -28,10 +28,8 @@ export default {
         PianoKey
     },
     data() {
-        let ac = new AudioContext()
         return {
-            ac: ac,
-            instrument: require('soundfont-player').instrument(ac, 'acoustic_grand_piano', {
+            instrument: require('soundfont-player').instrument(new AudioContext(), 'acoustic_grand_piano', {
                 soundfont: 'FluidR3_GM'
                 }),
             isPedal: false,
