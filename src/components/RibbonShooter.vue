@@ -72,11 +72,13 @@ export default {
     .white-key {
         display: flex;
         justify-content: center;
-        width: calc(var(--white-key-width) + var(--white-key-border-width));
+        width: calc(var(--white-key-width));
+        border-left: var(--white-key-border-width) solid transparent;
+        border-right: var(--white-key-border-width) solid transparent;
     }
 
     .white-key--glow {
-        box-shadow: 0 0 10px 2px greenyellow;
+        box-shadow: 0 0 12px 6px greenyellow;
     }
 
     .black-key {
@@ -86,7 +88,7 @@ export default {
     }
 
     .black-key--glow {
-        box-shadow: 0 -2px 10px 3px royalblue;
+        box-shadow: 0 -2px 12px 6px royalblue;
     }
 
 

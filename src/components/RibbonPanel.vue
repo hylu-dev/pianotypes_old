@@ -1,6 +1,6 @@
 <template>
-    <div class="midi-panel">
-        <ribbon-shooter v-for="(value, key) in sharedKeyState.keyStates" :key="value" :note="key"></ribbon-shooter>
+    <div class="ribbon-panel">
+        <ribbon-shooter class="ribbon-shooter" v-for="(value, key) in sharedKeyState.keyStates" :key="value" :note="key"></ribbon-shooter>
     </div>
 </template>
 
@@ -10,7 +10,7 @@ import RibbonShooter from './RibbonShooter'
 import KeyStateStore from '../stores/KeyStateStore'
 
 export default {
-    name: 'midi-panel',
+    name: 'ribbon-panel',
     components: {
         RibbonShooter
     },
@@ -26,7 +26,7 @@ export default {
 </script>
 
 <style scoped>
-    .midi-panel {
+    .ribbon-panel {
         display: flex;
         flex-flow: row;
         background-color: rgb(22, 22, 22);
@@ -34,5 +34,11 @@ export default {
         height: 100vh;
         align-items: flex-end;
         justify-content: center;
+    }
+
+    .ribbon-shooter {
+        position: relative;
+        height: 0;
+        z-index: 2;
     }
 </style>

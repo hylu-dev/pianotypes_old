@@ -4,8 +4,8 @@
   </div>
 
   <div class="midi-keyboard-container">
-    <div class="midi-panel-wrapper">
-      <midi-panel></midi-panel>
+    <div class="ribbon-panel-wrapper">
+      <ribbon-panel></ribbon-panel>
     </div>
 
     <div class="keyboard-wrapper">
@@ -20,7 +20,7 @@
 
 <script>
 import PianoKeyboard from './components/PianoKeyboard'
-import MidiPanel from './components/MidiPanel'
+import RibbonPanel from './components/RibbonPanel'
 
 export default {  
   name: 'App',
@@ -29,7 +29,7 @@ export default {
   },
   components: {
     PianoKeyboard,
-    MidiPanel
+    RibbonPanel
   }
 }
 </script>
@@ -68,7 +68,7 @@ export default {
     align-self: center;
   }
 
-  .midi-panel-wrapper {
+  .ribbon-panel-wrapper {
     align-self: center;
   }
 

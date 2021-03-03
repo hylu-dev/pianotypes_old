@@ -80,7 +80,7 @@ export default {
         border-right: var(--white-key-border-width) solid transparent;
         background: var(--white-key-colour);
         background-clip: padding-box;
-        z-index: 1;
+        z-index: 2;
     }
 
     .white-key h1 {
@@ -107,7 +107,7 @@ export default {
         width: var(--black-key-width);
         height: 50%;
         background: var(--black-key-colour);
-        z-index: 2;
+        z-index: 3;
     }
 
     .black-key h1 {

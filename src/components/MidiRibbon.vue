@@ -14,7 +14,7 @@ export default {
             timer: null,
             yPos: 0,
             height: 0,
-            speed: 2, // move at 1000/<speed>px per second
+            speed: 1, // move at 1000/<speed>px per second
             maxHeight: window.innerHeight,
             active: true
         }
@@ -68,7 +68,7 @@ export default {
         width: inherit;
         border-radius: 7px;
         box-sizing: none;
-        bottom: calc(var(--piano-height) - 5px);
+        bottom: -6px;
         box-shadow: 0 0 5px 1px #111;
     }
 
