@@ -1,8 +1,8 @@
 <template>
-    <div style="position: absolute;bottom: 5%;left: 5%;user-select: none;">
-        <p>Pedal On: {{isPedal}}</p>
-    </div>
-    <div ref="keyboard" class="keyboard" :style="{}">
+    <div ref="keyboard" :style="{}">
+        <div style="position: absolute;bottom: 5%;left: 5%;user-select: none;">
+            <p>Pedal On: {{isPedal}}</p>
+        </div>
         <piano-key v-for="(value, key) in sharedKeyState.keyStates" :key="value" :note="key" :id="key" @pressed="clickPressKey" @released="clickReleaseKey"></piano-key>
     </div>
 </template>
@@ -99,7 +99,7 @@ export default {
 </script>
 
 <style scoped>
-    .keyboard {
+    #keyboard {
         height: var(--piano-height);
         display: flex;
         flex-flow: row;

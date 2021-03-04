@@ -1,6 +1,6 @@
 <template>
-    <div class="ribbon-panel">
-        <ribbon-shooter v-for="(value, key) in sharedKeyState.keyStates" :key="value" :note="key"></ribbon-shooter>
+    <div>
+        <ribbon-shooter id="ribbon-shooter" v-for="(value, key) in sharedKeyState.keyStates" :key="value" :note="key"></ribbon-shooter>
     </div>
 </template>
 
@@ -26,7 +26,7 @@ export default {
 </script>
 
 <style scoped>
-    .ribbon-panel {
+    #ribbon-panel {
         display: flex;
         flex-flow: row;
         background-color: var(--secondary-bg-colour);

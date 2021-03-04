@@ -21,7 +21,7 @@ export default {
         }
     },
     props: {
-        id: String,
+        ribbonID: String,
         isWhiteKey: Boolean,
         isReleased: Boolean
     },
@@ -31,14 +31,13 @@ export default {
             this.timer = setInterval(() => { this.yPos++; }, this.speed);
         },
         emitDestroy() {
-            this.$emit('destroy', this.id);
+            this.$emit('destroy', this.ribbonID);
             this.active = false;
         }
     },
     computed: {
         ribbonClasses: function() {
             let classBinding = {};
-            classBinding['ribbon'] = true;
             classBinding['white-ribbon'] = this.isWhiteKey;
             classBinding['black-ribbon'] = !this.isWhiteKey;
             classBinding['pressed'] = !this.released;
@@ -66,7 +65,7 @@ export default {
 </script>
 
 <style scoped>
-    .ribbon {
+    #ribbon {
         position: absolute;
         width: inherit;
         border-radius: 7px;

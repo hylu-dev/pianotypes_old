@@ -13,11 +13,11 @@
 
   <div class="midi-keyboard-container">
     <div class="ribbon-panel-wrapper">
-      <ribbon-panel></ribbon-panel>
+      <ribbon-panel id="ribbon-panel"></ribbon-panel>
     </div>
 
     <div class="keyboard-wrapper">
-      <piano-keyboard></piano-keyboard>
+      <piano-keyboard id="keyboard"></piano-keyboard>
     </div>
   </div>
 </template>

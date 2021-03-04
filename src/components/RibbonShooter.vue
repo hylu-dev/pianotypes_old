@@ -1,6 +1,6 @@
 <template>
     <div :class="ribbonShooterClasses">
-        <midi-ribbon v-for="(value, id) in ribbons" :key="id" :id="id" :isWhiteKey="isWhiteKey" :isReleased="isPressed" @destroy="destroyRibbon"></midi-ribbon>
+        <midi-ribbon id="ribbon" v-for="(value, id) in ribbons" :key="id" :ribbonID="id" :isWhiteKey="isWhiteKey" :isReleased="isPressed" @destroy="destroyRibbon"></midi-ribbon>
     </div>
 </template>
 
@@ -37,7 +37,6 @@ export default {
             const regex = /[cCdDfFgGaA#]/g;
             this.note.search(regex) >= 0 ? classBinding["offset-key"] = true : classBinding["offset-key"] = false; // offset margin if key precedes|is a black key
             // add styles depending on key colour
-            classBinding['ribbon-shooter'] = true;
             if (this.isWhiteKey) {
                 classBinding['white-key'] = true;
                 classBinding['white-key--glow'] = this.isPressed;
@@ -66,7 +65,7 @@ export default {
 </script>
 
 <style scoped>
-    .ribbon-shooter {
+    #ribbon-shooter {
         position: relative;
         display: flex;
         justify-content: center;
