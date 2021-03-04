@@ -1,6 +1,8 @@
 <template>
   <div class="title-panel">
+    <div class="author-links">Placeholder</div>
     <h1>pianotype</h1>
+    <div class="settings">Settings</div>
   </div>
 
   <div class="midi-keyboard-container">
@@ -47,12 +49,17 @@ export default {
     width: 100%;
     height: 60px;
     font-size: 1rem;
-    justify-content: center; /* align horizontal */
+    justify-content: space-evenly;
     align-items: center; /* align vertical */
     padding-bottom: 5px;
     box-shadow: 0 0 10px black;
     user-select: none;
   }
+
+  .title-panel h1 {
+    align-self: center;
+  }
+
 
   @media only screen and (max-width: 600px) {
     .title-panel {

@@ -1,5 +1,5 @@
 <template>
-    <div style="position: absolute; bottom: 5%;left: 5%;">
+    <div style="position: absolute;bottom: 5%;left: 5%;user-select: none;">
         <p>Pedal On: {{isPedal}}</p>
     </div>
     <div ref="keyboard" class="keyboard" :style="{}">
@@ -30,7 +30,8 @@ export default {
     data() {
         return {
             instrument: require('soundfont-player').instrument(new AudioContext(), 'acoustic_grand_piano', {
-                soundfont: 'FluidR3_GM'
+                soundfont: 'MusyngKite',
+                gain: 10
                 }),
             isPedal: false,
             sharedKeyState: KeyStateStore.state,
