@@ -29,7 +29,7 @@ export default {
     .ribbon-panel {
         display: flex;
         flex-flow: row;
-        background-color: rgb(22, 22, 22);
+        background-color: var(--secondary-bg-colour);
         width: 100vw;
         height: 100vh;
         align-items: flex-end;

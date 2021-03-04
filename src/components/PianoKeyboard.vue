@@ -45,6 +45,7 @@ export default {
             if (e.repeat) { return }
             let note = KeyBindingStore.getKeyNoteBinding(e.key);
             if (note) {
+                if (this.gainNodes[note]) { this.gainNodes[note].stop(); }
                 this.instrument.then((instr) => { this.gainNodes[note] = instr.play(note, 0, 1); });
                 KeyStateStore.updateKeyPressed(note);
             }        
@@ -59,6 +60,7 @@ export default {
         },
         clickPressKey(note) {
             if (note) {
+                if (this.gainNodes[note]) { this.gainNodes[note].stop(); }
                 this.instrument.then((instr) => { this.gainNodes[note] = instr.play(note, 0, 1); });
                 KeyStateStore.updateKeyPressed(note);
             }

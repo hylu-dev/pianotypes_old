@@ -2,7 +2,13 @@
   <div class="title-panel">
     <div class="author-links">Placeholder</div>
     <h1>pianotype</h1>
-    <div class="settings">Settings</div>
+    <div class="settings">
+      <router-link to="/Settings">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-gear-fill" viewBox="0 0 16 16">
+          <use href="/assets/icons.svg#gear-fill"/>
+        </svg>
+      </router-link>
+    </div>
   </div>
 
   <div class="midi-keyboard-container">
@@ -14,10 +20,6 @@
       <piano-keyboard></piano-keyboard>
     </div>
   </div>
-
-
-  
-
 </template>
 
 <script>
@@ -45,21 +47,29 @@ export default {
 
   .title-panel {
     display: flex;
-    background: #222;
+    background: var(--main-bg-colour);
     width: 100%;
     height: 60px;
     font-size: 1rem;
     justify-content: space-evenly;
     align-items: center; /* align vertical */
-    padding-bottom: 5px;
     box-shadow: 0 0 10px black;
     user-select: none;
+    padding: 5px;
+    line-height: 0;
   }
 
   .title-panel h1 {
     align-self: center;
+    
   }
 
+  .settings {
+    display: flex;
+    width: 10rem;
+    height: 10rem;
+    color: white;
+  }
 
   @media only screen and (max-width: 600px) {
     .title-panel {
@@ -69,6 +79,7 @@ export default {
   }
 
   .midi-keyboard-container {
+    background: var(--main-bg-colour);
     position: absolute;
     display: flex;
     flex-flow: column;
@@ -89,7 +100,5 @@ export default {
     display: flex;
     justify-content: center;
   }
-
-
-
 </style>
+
