@@ -5,7 +5,11 @@
 <script>
 export default {
     mounted() {
-        this.timer = setInterval(() => { this.height++; }, this.speed);
+        this.timer = setInterval(() => { this.height+=this.speed; }, 1);
+    },
+    beforeUnmount() {
+        // Cleanup interval
+        clearInterval(this.timer);
     },
     name: 'midi-ribbon',
     emits: ['destroy'],
@@ -14,7 +18,7 @@ export default {
             timer: null,
             yPos: 0,
             height: 0,
-            speed: 1, // move at 1000/<speed>px per second
+            speed: 1.5, // move at 1000/<speed>px per second
             maxHeight: window.innerHeight,
             active: true,
             released: false
@@ -28,7 +32,7 @@ export default {
     methods: {
         releaseRibbon() {
             clearInterval(this.timer);
-            this.timer = setInterval(() => { this.yPos++; }, this.speed);
+            this.timer = setInterval(() => { this.yPos+=this.speed; }, 1);
         },
         emitDestroy() {
             this.$emit('destroy', this.ribbonID);
@@ -40,7 +44,6 @@ export default {
             let classBinding = {};
             classBinding['white-ribbon'] = this.isWhiteKey;
             classBinding['black-ribbon'] = !this.isWhiteKey;
-            classBinding['pressed'] = !this.released;
             return classBinding;
         },
         styleObject: function() {
@@ -72,10 +75,6 @@ export default {
         box-sizing: none;
         bottom: -6px;
         box-shadow: 0 0 5px 1px #111;
-    }
-
-    .pressed {
-        box-shadow: inset 0 0 10px 2px goldenrod;
     }
 
     .white-ribbon {

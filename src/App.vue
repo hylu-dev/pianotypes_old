@@ -1,40 +1,31 @@
 <template>
-  <div class="title-panel">
+  <nav>
     <div class="author-links">Placeholder</div>
-    <h1>pianotype</h1>
-    <div class="settings">
-      <router-link to="/Settings">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-gear-fill" viewBox="0 0 16 16">
-          <use href="/assets/icons.svg#gear-fill"/>
-        </svg>
+      <router-link to="/">
+        <h1>pianotype</h1>
       </router-link>
+    <div class="settings">
+      <router-link :to="{ name: 'Settings' }">
+        <i class="icofont-options"></i>
+      </router-link>
+      <i class="icofont-info-circle"></i>
     </div>
-  </div>
-
-  <div class="midi-keyboard-container">
-    <div class="ribbon-panel-wrapper">
-      <ribbon-panel id="ribbon-panel"></ribbon-panel>
-    </div>
-
-    <div class="keyboard-wrapper">
-      <piano-keyboard id="keyboard"></piano-keyboard>
-    </div>
-  </div>
+  </nav>
+  <router-view v-slot="{ Component }">
+    <transition name="fade" mode="out-in">
+      <component :is="Component" />
+    </transition>
+  </router-view>    
+  
 </template>
 
 <script>
-import PianoKeyboard from './components/PianoKeyboard'
-import RibbonPanel from './components/RibbonPanel'
-
 export default {  
   name: 'App',
   data() {
     return {}
   },
-  components: {
-    PianoKeyboard,
-    RibbonPanel
-  }
+  components: {}
 }
 </script>
 
@@ -43,9 +34,10 @@ export default {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
+    overflow: hidden;
   }
 
-  .title-panel {
+  nav {
     display: flex;
     background: var(--main-bg-colour);
     width: 100%;
@@ -59,16 +51,42 @@ export default {
     line-height: 0;
   }
 
-  .title-panel h1 {
+  nav h1 {
     align-self: center;
-    
+    font-size: 1.7rem;
+  }
+
+  nav a.router-link-exact-active {
+    color: var(--primary-text-colour);
   }
 
   .settings {
     display: flex;
-    width: 10rem;
-    height: 10rem;
-    color: white;
+    justify-content: space-evenly;
+    font-size: 2rem;
+  }
+
+  .icofont-options, .icofont-info-circle {
+    display: inline-block;
+    transition: all 0.3s ease-in;
+  }
+
+  .icofont-options:hover {
+    color: var(--primary-text-colour);
+    transform: rotate(90deg);
+  }
+
+  .icofont-info-circle:hover {
+    color: var(--primary-text-colour);
+    transform: rotate(-360deg);
+  }
+
+  .fade-enter-active, .fade-leave-active {
+    transition: all .5s ease-in-out;
+  }
+  .fade-enter, .fade-leave-to {
+    opacity: 0;
+    transform: translateX(5em);
   }
 
   @media only screen and (max-width: 600px) {
@@ -76,29 +94,6 @@ export default {
       padding-left: 5%;
       justify-content: left;
     }
-  }
-
-  .midi-keyboard-container {
-    background: var(--main-bg-colour);
-    position: absolute;
-    display: flex;
-    flex-flow: column;
-    justify-content: center;
-    width: 100%;
-    bottom: 0;
-    z-index: -1;
-  }
-
-  .keyboard-wrapper {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    box-shadow: 0 0 10px black;
-  }
-
-  .ribbon-panel-wrapper {
-    display: flex;
-    justify-content: center;
   }
 </style>
 

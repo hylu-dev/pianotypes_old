@@ -24,6 +24,13 @@ export default {
     mounted() {
         this.isMounted = true
     },
+    beforeUnmount() {
+        window.removeEventListener('keydown', this.pressKey),
+        window.removeEventListener('keyup', this.releaseKey),
+        window.removeEventListener('keydown', this.downPedal),
+        window.removeEventListener('keyup', this.upPedal),
+        window.removeEventListener('blur', this.clearKeyStates)
+    },
     components: {
         PianoKey
     },
@@ -31,7 +38,7 @@ export default {
         return {
             instrument: require('soundfont-player').instrument(new AudioContext(), 'acoustic_grand_piano', {
                 soundfont: 'MusyngKite',
-                gain: 10
+                gain: 6
                 }),
             isPedal: false,
             sharedKeyState: KeyStateStore.state,
@@ -88,6 +95,7 @@ export default {
         clearKeyStates() {
             KeyStateStore.resetKeyStates();
             this.gainNodes = {};
+            this.isPedal = false;
         }
     },
     computed: {
