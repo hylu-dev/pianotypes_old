@@ -9,7 +9,6 @@ export default {
     name: 'note-display',
     computed: {
         currentNote: function() {
-            console.log(KeyStateStore.state.lastKey);
             return KeyStateStore.state.lastKey;
         }
     }

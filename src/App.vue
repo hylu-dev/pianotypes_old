@@ -1,7 +1,7 @@
 <template>
   <div class="vertical-flex-container">
     <nav>
-      <div class="author-links">Placeholder</div>
+      <div class="author-links"></div>
       <div class="title-link">
         <router-link to="/">
           <h1>pianotypes</h1>
@@ -48,7 +48,7 @@ export default {
   }
 
   .vertical-flex-child {
-    flex-basis: 100%;
+    flex: 1 0 auto;
   }
 
   nav {
@@ -91,13 +91,8 @@ export default {
 
   .icofont-options, .icofont-info-circle {
     display: inline-block;
-    transition: all .4s ease-in;
+    transition: all .4s ease-in-out;
   }
-
-  .icofont-options:focus, .icofont-info-circle:focus {
-    outline: 1px solid purple;
-  }
-
 
   .icofont-options:hover {
     color: var(--primary-text-colour);

@@ -45,7 +45,7 @@ export default {
             sharedKeyState: KeyStateStore.state,
             sharedBindingState: KeyBindingStore.state,
             isMounted: false,
-            gainNodes: {}
+            gainNodes: {},
         }
     },
     methods: {

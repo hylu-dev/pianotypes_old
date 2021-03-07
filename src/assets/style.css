@@ -31,13 +31,13 @@ body {
     color: var(--secondary-text-colour);
     font-family: 'Source Code Pro', Helvetica, Arial, sans-serif;
     font-weight: 400;
-    overflow:hidden;
+    overflow: hidden;
 }
 
 h1 {
     color: var(--primary-text-colour);
     font-family: Cormorant, Helvetica, Arial, sans-serif;
-    font-weight: 600;
+    font-weight: 500;
 }
 
 h2 {
@@ -53,7 +53,6 @@ h3 {
 }
 
 a {
-    user-select: none;
     text-decoration: none;
     color: var(--secondary-text-colour);
 }

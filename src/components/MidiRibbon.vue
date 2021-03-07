@@ -71,7 +71,7 @@ export default {
     #ribbon {
         position: absolute;
         width: inherit;
-        border-radius: 7px;
+        border-radius: 6px;
         box-sizing: none;
         bottom: -6px;
         box-shadow: 0 0 5px 1px #111;

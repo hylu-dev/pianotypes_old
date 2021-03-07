@@ -20,7 +20,6 @@ const KeyStateStore = {
         for (let key in this.state.keyStates) {
             this.state.keyStates[key].isPressed = false;
         }
-        this.state.lastKey = "";
     }
 }
 
