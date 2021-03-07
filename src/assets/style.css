@@ -5,18 +5,19 @@
     /* main palette */
     --primary-text-colour: rgb(187, 175, 106);
     --secondary-text-colour: #555;
-    --main-bg-colour: #222;
-    --secondary-bg-colour: rgb(22,22,22);
+    --tertiary-text-colour: #222;
+    --primary-bg-colour: rgb(22,22,22);
+    --secondary-bg-colour: #222;
 
     /* piano styling */
     --piano-height: calc(8vw);
     --white-key-colour: rgb(240, 240, 240);
-    --white-key-hover-colour: lightcyan;
+    --white-key-hover-colour: rgb(224, 255, 229);
     --white-key-active-colour: rgb(139, 216, 139);
     --white-key-width: calc(var(--piano-height)/3.3);
     --white-key-border-width: calc(var(--piano-height)/100);
     --black-key-colour: rgb(30, 30, 30);
-    --black-key-hover-colour: slategrey;
+    --black-key-hover-colour: rgb(97, 119, 142);
     --black-key-active-colour: rgb(90, 136, 174);
     --black-key-width: calc(var(--white-key-width)/2);
     --key-label-size: calc(var(--piano-height)/10);
@@ -26,10 +27,11 @@
 
 body {
     margin: 0;
-    background-color: var(--main-bg-colour);
+    background-color: var(--primary-bg-colour);
     color: var(--secondary-text-colour);
     font-family: 'Source Code Pro', Helvetica, Arial, sans-serif;
     font-weight: 400;
+    overflow:hidden;
 }
 
 h1 {
@@ -41,6 +43,12 @@ h1 {
 h2 {
     color: var(--primary-text-colour);
     font-family: Cormorant, Helvetica, Arial, sans-serif;
+    font-weight: 400;
+}
+
+h3 {
+    color: var(--secondary-text-colour);
+    font-family: 'Source Code Pro', Helvetica, Arial, sans-serif;
     font-weight: 400;
 }
 

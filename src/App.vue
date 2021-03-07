@@ -1,22 +1,27 @@
 <template>
-  <nav>
-    <div class="author-links">Placeholder</div>
-      <router-link to="/">
-        <h1>pianotype</h1>
-      </router-link>
-    <div class="settings">
-      <router-link :to="{ name: 'Settings' }">
-        <i class="icofont-options"></i>
-      </router-link>
-      <i class="icofont-info-circle"></i>
-    </div>
-  </nav>
-  <router-view v-slot="{ Component }">
-    <transition name="fade" mode="out-in">
-      <component :is="Component" />
-    </transition>
-  </router-view>    
-  
+  <div class="vertical-flex-container">
+    <nav>
+      <div class="author-links">Placeholder</div>
+      <div class="title-link">
+        <router-link to="/">
+          <h1>pianotypes</h1>
+        </router-link>
+      </div>
+      <div class="menu-container">
+        <router-link :to="{ name: 'Settings' }">
+          <i class="icofont-options"></i> 
+        </router-link>
+        <i class="icofont-info-circle"></i>
+      </div>
+    </nav>
+    <div class="vertical-flex-child">
+      <router-view v-slot="{ Component }">
+        <transition name="fade" mode="out-in">
+          <component :is="Component" />
+        </transition>
+      </router-view>
+    </div>    
+  </div>
 </template>
 
 <script>
@@ -34,12 +39,21 @@ export default {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
-    overflow: hidden;
+  }
+
+  .vertical-flex-container {
+    display: flex;
+    flex-flow: column;
+    height: 100vh;
+  }
+
+  .vertical-flex-child {
+    flex-basis: 100%;
   }
 
   nav {
     display: flex;
-    background: var(--main-bg-colour);
+    background: var(--secondary-bg-colour);
     width: 100%;
     height: 60px;
     font-size: 1rem;
@@ -49,6 +63,7 @@ export default {
     user-select: none;
     padding: 5px;
     line-height: 0;
+    z-index: 3;
   }
 
   nav h1 {
@@ -60,15 +75,19 @@ export default {
     color: var(--primary-text-colour);
   }
 
-  .settings {
+  .author-links {
     display: flex;
-    justify-content: space-evenly;
+  }
+
+  .menu-container {
+    display: flex;
+    justify-content: flex-end;
     font-size: 2rem;
   }
 
   .icofont-options, .icofont-info-circle {
     display: inline-block;
-    transition: all 0.3s ease-in;
+    transition: all .4s ease-in;
   }
 
   .icofont-options:hover {
@@ -82,11 +101,11 @@ export default {
   }
 
   .fade-enter-active, .fade-leave-active {
-    transition: all .5s ease-in-out;
+    transition: all .3s ease-in-out;
   }
-  .fade-enter, .fade-leave-to {
+  .fade-enter-from, .fade-leave-to {
     opacity: 0;
-    transform: translateX(5em);
+    transform: translateY(5em);
   }
 
   @media only screen and (max-width: 600px) {

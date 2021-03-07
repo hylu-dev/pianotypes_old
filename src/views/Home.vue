@@ -4,7 +4,7 @@
       <ribbon-panel v-if="true" id="ribbon-panel"></ribbon-panel>
     </div>
     <div class="keyboard-wrapper">
-      <piano-keyboard id="keyboard"></piano-keyboard>
+      <piano-keyboard id="keyboard"></piano-keyboard>    
     </div>
   </div>
 </template>
@@ -27,25 +27,27 @@ export default {
 
 <style scoped>
   .midi-keyboard-container {
-    background: var(--main-bg-colour);
-    position: absolute;
     display: flex;
     flex-flow: column;
-    justify-content: center;
+    justify-content: flex-end;
     width: 100%;
-    bottom: 0;
+    height:100%;
+    flex-basis: auto;
     z-index: -1;
-  }
-
-  .keyboard-wrapper {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    box-shadow: 0 0 10px black;
   }
 
   .ribbon-panel-wrapper {
     display: flex;
+    flex: 1 1 auto;
     justify-content: center;
+  }
+
+  .keyboard-wrapper {
+    background: var(--secondary-bg-colour);
+    flex: 0 1 auto;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    box-shadow: 0 0 10px black;
   }
 </style>

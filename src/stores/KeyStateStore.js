@@ -4,9 +4,11 @@ import keystates from '../json/keystates.json';
 const KeyStateStore = {
     state: reactive({
         keyStates: keystates,
+        lastKey: ""
     }),
     updateKeyPressed(key) {
         this.state.keyStates[key].isPressed = true;
+        this.state.lastKey = key;
     },
     updateKeyReleased(key) {
         this.state.keyStates[key].isPressed = false;
@@ -18,6 +20,7 @@ const KeyStateStore = {
         for (let key in this.state.keyStates) {
             this.state.keyStates[key].isPressed = false;
         }
+        this.state.lastKey = "";
     }
 }
 

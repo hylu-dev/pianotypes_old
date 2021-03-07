@@ -17,6 +17,8 @@ export default {
 div {
   background: var(--secondary-bg-colour);
   margin: 10%;
+  padding: 2rem;
+  box-shadow: 0 0 10px 2px #111;
 }
 
 </style>

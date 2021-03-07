@@ -1,5 +1,6 @@
 <template>
     <div>
+        <note-display v-if="showDisplay" id="note-display"></note-display>
         <ribbon-shooter id="ribbon-shooter" v-for="(value, key) in sharedKeyState.keyStates" :key="value" :note="key"></ribbon-shooter>
     </div>
 </template>
@@ -7,16 +8,19 @@
 <script>
 
 import RibbonShooter from './RibbonShooter'
+import NoteDisplay from './NoteDisplay'
 import KeyStateStore from '../stores/KeyStateStore'
 
 export default {
     name: 'ribbon-panel',
     components: {
-        RibbonShooter
+        RibbonShooter,
+        NoteDisplay
     },
     data() {
         return {
-            sharedKeyState: KeyStateStore.state
+            sharedKeyState: KeyStateStore.state,
+            showDisplay: true
         }
     },
     methods: {
@@ -29,9 +33,7 @@ export default {
     #ribbon-panel {
         display: flex;
         flex-flow: row;
-        background-color: var(--secondary-bg-colour);
         width: 100vw;
-        height: 100vh;
         align-items: flex-end;
         justify-content: center;
     }
