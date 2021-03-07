@@ -71,6 +71,10 @@ export default {
     font-size: 1.7rem;
   }
 
+  nav h1:focus {
+    outline: 4px solid var(--primary-text-colour);
+  }
+
   nav a.router-link-exact-active {
     color: var(--primary-text-colour);
   }
@@ -89,6 +93,11 @@ export default {
     display: inline-block;
     transition: all .4s ease-in;
   }
+
+  .icofont-options:focus, .icofont-info-circle:focus {
+    outline: 1px solid purple;
+  }
+
 
   .icofont-options:hover {
     color: var(--primary-text-colour);
