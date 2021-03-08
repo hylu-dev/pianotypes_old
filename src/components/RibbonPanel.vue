@@ -1,7 +1,7 @@
 <template>
     <div>
         <note-display v-if="showDisplay" id="note-display"></note-display>
-        <ribbon-shooter id="ribbon-shooter" v-for="(value, key) in sharedKeyState.keyStates" :key="value" :note="key"></ribbon-shooter>
+        <ribbon-shooter id="ribbon-shooter" v-for="note in sharedKeyState.keyboard.getKeyboard()" :key="note" :note="note"></ribbon-shooter>
     </div>
 </template>
 

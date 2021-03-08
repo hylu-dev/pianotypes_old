@@ -3,7 +3,7 @@
         <div style="position: absolute;bottom: 5%;left: 5%;user-select: none;">
             <h3>Pedal: {{isPedal}}</h3>
         </div>
-        <piano-key v-for="(value, key) in sharedKeyState.keyStates" :key="value" :note="key" :id="key" @pressed="clickPressKey" @released="clickReleaseKey"></piano-key>
+        <piano-key v-for="note in sharedKeyState.keyboard.getKeyboard()" :key="note" :note="note" @pressed="clickPressKey" @released="clickReleaseKey"></piano-key>
     </div>
 </template>
 

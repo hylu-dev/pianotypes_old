@@ -55,7 +55,7 @@ export default {
             return classBinding
         },
         isPressed: function() {
-            if (this.sharedKeyState.keyStates[this.note].isPressed) {
+            if (this.sharedKeyState.keyboard.getKeyboardDict()[this.note].isPressed) {
                 return true;
             }
             return false;

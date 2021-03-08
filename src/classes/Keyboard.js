@@ -6,18 +6,28 @@ export default class Keyboard {
         this.maxNote = maxNote;
         this.maxOctave = maxOctave;
         this.scale = ['C','C#','D','D#','E','F','F#','G','G#','A','A#','B']; // does not support flats
+        this.keyboard;
+        this.keyboardDict;
+        this.init();
     }
-    getKeyboard() {
-        let keyboard = {};
+    init() {
+        this.keyboard = [];
+        this.keyboardDict = {}
         let noteIndex = this.scale.indexOf(this.minNote);
         for (let curr = this.minOctave; curr <= this.maxOctave; curr++) {
             while (noteIndex < this.scale.length && this.scale[noteIndex]+curr != this.getNext(this.maxNote, this.maxOctave)) {
-                keyboard[this.scale[noteIndex]+curr] = {};
+                this.keyboard.push(this.scale[noteIndex]+curr);
+                this.keyboardDict[this.scale[noteIndex]+curr] = {};
                 noteIndex++;
             }   
             noteIndex = 0;
         }
-        return keyboard
+    }
+    getKeyboard() {
+        return this.keyboard;
+    }
+    getKeyboardDict() {
+        return this.keyboardDict;
     }
     getNext(note, octave) {
         return note == 'B' ? 'C'+octave : this.scale[this.scale.indexOf(note)+1]+octave;
@@ -27,10 +37,12 @@ export default class Keyboard {
     }
     updateMin(note, octave) {
         this.minNote = note;
-        this.minOctave = octave
+        this.minOctave = octave;
+        this.init();
     }
     updateMax(note, octave) {
         this.maxNote = note;
-        this.maxOctave = octave
+        this.maxOctave = octave;
+        this.init();
     }
   }
