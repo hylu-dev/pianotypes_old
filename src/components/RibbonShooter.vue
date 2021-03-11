@@ -1,6 +1,7 @@
 <template>
-    <div :class="ribbonShooterClasses">
-        <midi-ribbon id="ribbon" v-for="(value, id) in ribbons" :key="id" :ribbonID="id" :isWhiteKey="isWhiteKey" :isReleased="isPressed" @destroy="destroyRibbon"></midi-ribbon>
+    <div :class="keyClasses">
+        <midi-ribbon id="ribbon" v-for="(value, id) in ribbons" :key="id" :ribbonID="id" :isWhiteKey="isWhiteKey" :released="!isPressed" @destroy="destroyRibbon"></midi-ribbon>
+        <div :class="keyClasses" :style="glowStyles"></div>
     </div>
 </template>
 
@@ -20,7 +21,7 @@ export default {
         return {
             ids: 0,
             sharedKeyState: KeyStateStore.state,
-            ribbons: {}
+            ribbons: {},
         }
     },
     methods: {
@@ -32,19 +33,20 @@ export default {
         isWhiteKey: function() {
             return this.note.includes('#') ? false : true;
         },
-        ribbonShooterClasses: function() {
+        keyClasses: function() {
             let classBinding = {}
             const regex = /[cCdDfFgGaA#]/g;
             this.note.search(regex) >= 0 ? classBinding["offset-key"] = true : classBinding["offset-key"] = false; // offset margin if key precedes|is a black key
             // add styles depending on key colour
             if (this.isWhiteKey) {
                 classBinding['white-key'] = true;
-                classBinding['white-key--glow'] = this.isPressed;
             } else {
                 classBinding['black-key'] = true;
-                classBinding['black-key--glow'] = this.isPressed;
             }
             return classBinding
+        },
+        glowStyles: function() {
+            return this.isPressed ? { height: 0, alignSelf: 'flex-end', boxShadow: '0 0 10px 5px rgba(218, 165, 32)', zIndex: 2 } : {};
         },
         isPressed: function() {
             if (KeyStateStore.getKeyPressedState(this.note)) {
@@ -69,7 +71,7 @@ export default {
         position: relative;
         display: flex;
         justify-content: center;
-        height: 0;
+        height: 100%;
         z-index: 2;
     }
 
@@ -83,18 +85,8 @@ export default {
         border-right: var(--white-key-border-width) solid transparent;
     }
 
-    .white-key--glow {
-        box-shadow: 0 0 12px 6px goldenrod;
-    }
-
     .black-key {
         width: var(--black-key-width);
     }
-
-    .black-key--glow {
-        box-shadow: 0 -2px 12px 6px goldenrod;
-    }
-
-
 
 </style>

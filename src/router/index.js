@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
-import Settings from '../views/Settings.vue'
 import NotFound from '../views/NotFound.vue'
 
 const routes = [
@@ -15,14 +14,11 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: Settings
+    component: () => import(/* webpackChunkName: "settings" */ '../views/Settings.vue')
   },
   {
     path: '/:catchAll(.*)',
     name: 'NotFound',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: NotFound
   }
 ]

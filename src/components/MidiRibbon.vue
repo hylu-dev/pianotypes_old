@@ -1,42 +1,47 @@
 <template>
-    <div v-if="active" :class="ribbonClasses" :style="styleObject" ></div>
+    <transition appear name="ribbon"
+    @before-leave="ribbonBeforeLeave"
+    @leave="ribbonLeave"
+    @after-leave="emitDestroy">
+            <div ref="ribbon" v-if="active" :class="ribbonClasses"></div>
+    </transition>
 </template>
 
 <script>
 export default {
     mounted() {
-        this.timer = setInterval(() => { this.height+=this.speed; }, 1);
-    },
-    beforeUnmount() {
-        // Cleanup interval
-        clearInterval(this.timer);
+        this.ribbonClientHeight = this.$refs.ribbon.clientHeight;
     },
     name: 'midi-ribbon',
     emits: ['destroy'],
     data() {
         return {
-            timer: null,
-            yPos: 0,
-            height: 0,
-            speed: 1.5, // move at 1000/<speed>px per second
-            maxHeight: window.innerHeight,
             active: true,
-            released: false
+            ribbonClientHeight: 0,
         }
     },
     props: {
         ribbonID: String,
         isWhiteKey: Boolean,
-        isReleased: Boolean
+        released: Boolean
     },
     methods: {
         releaseRibbon() {
-            clearInterval(this.timer);
-            this.timer = setInterval(() => { this.yPos+=this.speed; }, 1);
+            this.active = false;
         },
         emitDestroy() {
             this.$emit('destroy', this.ribbonID);
-            this.active = false;
+        },
+        ribbonBeforeLeave(el) {
+            let rect = el.getBoundingClientRect();
+            let lenRatio = (rect.bottom-rect.y)/this.ribbonClientHeight; // Ratio between actual height of ribbon and max height for ribbon
+            let timeOffset = 2+(1-lenRatio); // this is required because smaller ribbons fly faster as the bottom of the ribbon needs to travel further
+            el.style.transition = 'transform ' + timeOffset + 's linear';
+        },
+        ribbonLeave(el) {
+            let rect = el.getBoundingClientRect();
+            let lenRatio = (rect.bottom-rect.y)/this.ribbonClientHeight; // Ratio between actual height of ribbon and max height for ribbon
+            el.style.transform = 'translateY(-100%)scaleY(' + lenRatio + ')';
         }
     },
     computed: {
@@ -45,23 +50,11 @@ export default {
             classBinding['white-ribbon'] = this.isWhiteKey;
             classBinding['black-ribbon'] = !this.isWhiteKey;
             return classBinding;
-        },
-        styleObject: function() {
-            return {
-                height: this.height+'px',
-                transform: 'translateY('+ -this.yPos +'px)'
-            }
         }
     },
     watch: {
-        isReleased() {
-            this.released = true;
+        released() {
             this.releaseRibbon();
-        },
-        yPos() {
-            if (this.yPos >= this.maxHeight) {
-                this.emitDestroy();
-            }
         }
     }
 }
@@ -71,10 +64,18 @@ export default {
     #ribbon {
         position: absolute;
         width: inherit;
-        border-radius: 6px;
+        height: 100%;
         box-sizing: none;
-        bottom: -6px;
+        bottom: 0px;
         box-shadow: 0 0 5px 1px #111;
+    }
+
+    .ribbon-enter-active {
+        transition: transform 2s linear;
+    }
+
+    .ribbon-enter-from {
+        transform: translateY(50%)scaleY(0);
     }
 
     .white-ribbon {

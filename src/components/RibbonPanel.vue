@@ -7,15 +7,15 @@
 
 <script>
 
+import { defineAsyncComponent } from 'vue'
 import RibbonShooter from './RibbonShooter'
-import NoteDisplay from './NoteDisplay'
 import KeyStateStore from '../stores/KeyStateStore'
 
 export default {
     name: 'ribbon-panel',
     components: {
         RibbonShooter,
-        NoteDisplay
+        NoteDisplay: defineAsyncComponent(() => import(/* webpackChunkName: "note-display" */ './NoteDisplay'))
     },
     data() {
         return {

@@ -20,6 +20,7 @@ export default {
         position: absolute;
         align-self: center;
         font-size: 10rem;
+        user-select: none;
         color: var(--tertiary-text-colour);
     }
 </style>

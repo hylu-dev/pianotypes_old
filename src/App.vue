@@ -3,7 +3,7 @@
     <nav>
       <div class="author-links"></div>
       <div class="title-link">
-        <router-link to="/">
+        <router-link to="/" tabindex="-1">
           <h1>pianotypes</h1>
         </router-link>
       </div>

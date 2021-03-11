@@ -1,7 +1,7 @@
 <template>
   <div class="midi-keyboard-container">
     <div class="ribbon-panel-wrapper">
-      <ribbon-panel v-if="true" id="ribbon-panel"></ribbon-panel>
+      <ribbon-panel v-if="showRibbonPanel" id="ribbon-panel"></ribbon-panel>
     </div>
     <div class="keyboard-wrapper">
       <piano-keyboard id="keyboard"></piano-keyboard>    
@@ -16,7 +16,9 @@ import RibbonPanel from '../components/RibbonPanel'
 export default {
   name: 'Home',
   data() {
-    return {}
+    return {
+      showRibbonPanel: true
+    }
   },
   components: {
     PianoKeyboard,
@@ -48,6 +50,6 @@ export default {
     display: flex;
     justify-content: center;
     width: 100%;
-    box-shadow: 0 0 10px black;
+    box-shadow: 0 0 5px black;
   }
 </style>

@@ -39,7 +39,7 @@ export default {
         return {
             instrument: require('soundfont-player').instrument(new AudioContext(), 'acoustic_grand_piano', {
                 soundfont: 'MusyngKite',
-                gain: 6
+                gain: 5
                 }),
             isPedal: false,
             sharedKeyState: KeyStateStore.state,
