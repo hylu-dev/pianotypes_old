@@ -3,7 +3,7 @@
     <nav>
       <div class="author-links"></div>
       <div class="title-link">
-        <router-link to="/" tabindex="-1">
+        <router-link to="/">
           <h1>pianotypes</h1>
         </router-link>
       </div>
@@ -75,7 +75,13 @@ export default {
     outline: 4px solid var(--primary-text-colour);
   }
 
-  nav a.router-link-exact-active {
+  nav a.router-link-active {
+    color: var(--primary-text-colour);
+  }
+
+  a:focus {
+    outline: none;
+    text-decoration: underline;
     color: var(--primary-text-colour);
   }
 

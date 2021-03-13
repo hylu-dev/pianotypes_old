@@ -1,23 +1,34 @@
 <template>
-    <transition appear name="ribbon"
-    @before-leave="ribbonBeforeLeave"
-    @leave="ribbonLeave"
-    @after-leave="emitDestroy">
-            <div ref="ribbon" v-if="active" :class="ribbonClasses"></div>
-    </transition>
+    <div ref="ribbon" v-if="active" :class="ribbonClasses"></div>
 </template>
 
 <script>
 export default {
     mounted() {
-        this.ribbonClientHeight = this.$refs.ribbon.clientHeight;
+        this.el = this.$refs.ribbon;
+        this.ribbonClientHeight = this.el.clientHeight;
+        this.ribbonAnimation = this.el.animate(this.ribbonExtend, this.ribbonTiming);
+        this.el.animate(this.ribbonRounded, this.ribbonTiming)
     },
     name: 'midi-ribbon',
     emits: ['destroy'],
     data() {
         return {
+            el: null,
             active: true,
             ribbonClientHeight: 0,
+            ribbonAnimation: null,
+            ribbonExtend: [
+                { transform: 'translateY(50%)scaleY(0)' },
+                { transform: 'none' }
+            ],
+            ribbonRounded: [
+                { 'border-radius': '0px' },
+                { 'border-radius': '1000px' }
+            ],
+            ribbonTiming: { duration: 2000 },
+            isReleased: false,
+            test: 0
         }
     },
     props: {
@@ -26,22 +37,18 @@ export default {
         released: Boolean
     },
     methods: {
-        releaseRibbon() {
-            this.active = false;
+        async releaseRibbon() {
+            this.ribbonAnimation.oncancel = () => {
+                console.log(this.ribbonAnimation.currentTime);
+                let anime = this.el.animate(this.ribbonRelease, this.ribbonTiming);
+                anime.onfinish = this.emitDestroy;   
+            };
+            this.el.style.height = this.ribbonHeight+'px';
+            this.ribbonAnimation.cancel();
         },
         emitDestroy() {
+            this.active = false;
             this.$emit('destroy', this.ribbonID);
-        },
-        ribbonBeforeLeave(el) {
-            let rect = el.getBoundingClientRect();
-            let lenRatio = (rect.bottom-rect.y)/this.ribbonClientHeight; // Ratio between actual height of ribbon and max height for ribbon
-            let timeOffset = 2+(1-lenRatio); // this is required because smaller ribbons fly faster as the bottom of the ribbon needs to travel further
-            el.style.transition = 'transform ' + timeOffset + 's linear';
-        },
-        ribbonLeave(el) {
-            let rect = el.getBoundingClientRect();
-            let lenRatio = (rect.bottom-rect.y)/this.ribbonClientHeight; // Ratio between actual height of ribbon and max height for ribbon
-            el.style.transform = 'translateY(-100%)scaleY(' + lenRatio + ')';
         }
     },
     computed: {
@@ -50,11 +57,23 @@ export default {
             classBinding['white-ribbon'] = this.isWhiteKey;
             classBinding['black-ribbon'] = !this.isWhiteKey;
             return classBinding;
+        },
+        ribbonHeight: function() {
+            return this.el.getBoundingClientRect().bottom - this.el.getBoundingClientRect().y;
+        },
+        ribbonRelease: function() {
+            return [
+                { transform: 'none' },
+                { transform: 'translateY(' + -this.ribbonClientHeight + 'px)' }];
         }
     },
     watch: {
         released() {
-            this.releaseRibbon();
+            if (!this.isReleased) {
+                this.ribbonAnimation.pause();
+                this.isReleased = true;
+                this.releaseRibbon();
+            } 
         }
     }
 }
@@ -68,14 +87,6 @@ export default {
         box-sizing: none;
         bottom: 0px;
         box-shadow: 0 0 5px 1px #111;
-    }
-
-    .ribbon-enter-active {
-        transition: transform 2s linear;
-    }
-
-    .ribbon-enter-from {
-        transform: translateY(50%)scaleY(0);
     }
 
     .white-ribbon {

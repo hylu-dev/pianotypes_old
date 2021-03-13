@@ -15,7 +15,7 @@
     --white-key-hover-colour: rgb(224, 255, 229);
     --white-key-active-colour: rgb(139, 216, 139);
     --white-key-width: calc(var(--piano-height)/3.3);
-    --white-key-border-width: calc(var(--piano-height)/100);
+    --white-key-border-width: 1px;
     --black-key-colour: rgb(30, 30, 30);
     --black-key-hover-colour: rgb(97, 119, 142);
     --black-key-active-colour: rgb(90, 136, 174);
