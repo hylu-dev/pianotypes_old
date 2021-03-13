@@ -28,7 +28,6 @@ export default {
             ],
             ribbonTiming: { duration: 2000 },
             isReleased: false,
-            test: 0
         }
     },
     props: {
@@ -39,12 +38,13 @@ export default {
     methods: {
         async releaseRibbon() {
             this.ribbonAnimation.oncancel = () => {
-                console.log(this.ribbonAnimation.currentTime);
                 let anime = this.el.animate(this.ribbonRelease, this.ribbonTiming);
                 anime.onfinish = this.emitDestroy;   
             };
             this.el.style.height = this.ribbonHeight+'px';
-            this.ribbonAnimation.cancel();
+            requestAnimationFrame(() => {
+                this.ribbonAnimation.cancel();
+            })
         },
         emitDestroy() {
             this.active = false;
@@ -87,6 +87,7 @@ export default {
         box-sizing: none;
         bottom: 0px;
         box-shadow: 0 0 5px 1px #111;
+        border-radius: 5px;
     }
 
     .white-ribbon {
