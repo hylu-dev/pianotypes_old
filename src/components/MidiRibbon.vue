@@ -83,7 +83,7 @@ export default {
     #ribbon {
         position: absolute;
         width: inherit;
-        height: 100%;
+        height: calc(100% + 1rem);
         box-sizing: none;
         bottom: 0px;
         box-shadow: 0 0 5px 1px #111;
