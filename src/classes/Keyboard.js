@@ -35,12 +35,18 @@ export default class Keyboard {
     getPrevious(note, octave) {
         return note == 'C' ? 'B'+(octave-1) : this.scale[this.scale.indexOf(note)-1]+octave;
     }
-    updateMin(note, octave) {
+    getMin() {
+        return this.minNote+this.minOctave
+    }
+    setMin(note, octave) {
         this.minNote = note;
         this.minOctave = octave;
         this.init();
     }
-    updateMax(note, octave) {
+    getMax() {
+        return this.maxNote+this.maxOctave
+    }
+    setMax(note, octave) {
         this.maxNote = note;
         this.maxOctave = octave;
         this.init();

@@ -1,20 +1,20 @@
 <template>
     <div>
         <note-display v-if="showDisplay" id="note-display"></note-display>
-        <ribbon-shooter id="ribbon-shooter" v-for="note in sharedKeyState.keyboard.getKeyboard()" :key="note" :note="note"></ribbon-shooter>
+        <ribbon-lane id="ribbon-lane" v-for="note in sharedKeyState.keyboard.getKeyboard()" :key="note" :note="note"></ribbon-lane>
     </div>
 </template>
 
 <script>
 
 import { defineAsyncComponent } from 'vue'
-import RibbonShooter from './RibbonShooter'
+import RibbonLane from './RibbonLane'
 import KeyStateStore from '../stores/KeyStateStore'
 
 export default {
     name: 'ribbon-panel',
     components: {
-        RibbonShooter,
+        RibbonLane,
         NoteDisplay: defineAsyncComponent(() => import(/* webpackChunkName: "note-display" */ './NoteDisplay'))
     },
     data() {

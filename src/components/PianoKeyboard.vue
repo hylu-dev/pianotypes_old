@@ -3,7 +3,9 @@
         <div style="position: absolute;bottom: 5%;left: 5%;user-select: none;">
             <h3>Pedal: {{isPedal}}</h3>
         </div>
-        <piano-key v-for="note in sharedKeyState.keyboard.getKeyboard()" :key="note" :note="note" @pressed="clickPressKey" @released="clickReleaseKey"></piano-key>
+        <transition-group name="list">
+            <piano-key v-for="note in sharedKeyState.keyboard.getKeyboard()" :key="note" :note="note" @pressed="clickPressKey" @released="clickReleaseKey"></piano-key>
+        </transition-group>
     </div>
 </template>
 
@@ -52,10 +54,9 @@ export default {
         pressKey(e) {
             if (e.repeat) { return }
             let note = KeyBindingStore.getKeyNoteBinding(e.key);
-            if (note) {
+            if (KeyStateStore.updateKeyPressed(note)) {
                 if (this.gainNodes[note]) { this.gainNodes[note].stop(); }
                 this.instrument.then((instr) => { this.gainNodes[note] = instr.play(note, 0, 1); });
-                KeyStateStore.updateKeyPressed(note);
             }        
         },
         releaseKey(e) {
@@ -80,7 +81,9 @@ export default {
             }
         },
         downPedal(e) {
-            if (e.key == ' ') { this.isPedal = true; }
+            if (e.key == ' ') { 
+                this.isPedal = true;
+            }
         },
         upPedal(e) {
             if (e.key == ' ') { 
@@ -114,4 +117,19 @@ export default {
         display: flex;
         flex-flow: row;
     }
+
+    .list-enter-active,
+    .list-leave-active {
+        transition: all .8s cubic-bezier(0.19, 1, 0.22, 1);   
+    }
+    .list-enter-from,
+    .list-leave-to {
+        opacity: 0;
+        transform: translateY(30px)scale(0)rotate(30deg);
+    }
+    .list-move {
+        transition: transform .8s ease;
+    }
+
+
 </style>

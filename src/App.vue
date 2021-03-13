@@ -11,7 +11,9 @@
         <router-link :to="{ name: 'Settings' }">
           <i class="icofont-options"></i> 
         </router-link>
-        <i class="icofont-info-circle"></i>
+        <router-link :to="{ name: 'Settings' }">
+          <i class="icofont-info-circle"></i>
+        </router-link>
       </div>
     </nav>
     <div class="vertical-flex-child">
@@ -79,10 +81,15 @@ export default {
     color: var(--primary-text-colour);
   }
 
-  a:focus {
+  nav .menu-container a{
+    transition: all .4s ease-in-out;
+  }
+
+  nav a:focus {
     outline: none;
     text-decoration: underline;
     color: var(--primary-text-colour);
+    transform: scale(1.1);
   }
 
   .author-links {

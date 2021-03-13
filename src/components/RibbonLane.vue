@@ -1,18 +1,18 @@
 <template>
     <div :class="keyClasses">
-        <midi-ribbon id="ribbon" v-for="(value, id) in ribbons" :key="id" :ribbonID="id" :isWhiteKey="isWhiteKey" :released="!isPressed" @destroy="destroyRibbon"></midi-ribbon>
+        <ribbon-block id="ribbon" v-for="(value, id) in ribbons" :key="id" :ribbonID="id" :isWhiteKey="isWhiteKey" :released="!isPressed" @destroy="destroyRibbon"></ribbon-block>
         <div :class="keyClasses" :style="glowStyles"></div>
     </div>
 </template>
 
 <script>
-import MidiRibbon from './MidiRibbon'
+import RibbonBlock from './RibbonBlock'
 import KeyStateStore from '../stores/KeyStateStore'
 
 export default {
-    name: 'ribbon-shooter',
+    name: 'ribbon-lane',
     components: {
-        MidiRibbon
+        RibbonBlock
     },
     props : {
         note: String
@@ -67,7 +67,7 @@ export default {
 </script>
 
 <style scoped>
-    #ribbon-shooter {
+    #ribbon-lane {
         position: relative;
         display: flex;
         justify-content: center;

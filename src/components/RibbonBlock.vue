@@ -10,7 +10,7 @@ export default {
         this.ribbonAnimation = this.el.animate(this.ribbonExtend, this.ribbonDuration);
         this.el.animate(this.ribbonRounded, this.ribbonDuration)
     },
-    name: 'midi-ribbon',
+    name: 'ribbon-block',
     emits: ['destroy'],
     data() {
         return {
@@ -19,8 +19,8 @@ export default {
             ribbonClientHeight: 0,
             ribbonAnimation: null,
             ribbonExtend: [
-                { height: '0' },
-                { height: '100%' }
+                { transform: 'translateY(50%)scaleY(0)' },
+                { transform: 'none' }
             ],
             ribbonDuration: 2000,
             isReleased: false,
@@ -66,6 +66,7 @@ export default {
     watch: {
         released() {
             if (!this.isReleased) {
+                this.ribbonAnimation.pause();
                 this.isReleased = true;
                 this.releaseRibbon();
             } 
@@ -79,7 +80,8 @@ export default {
         position: absolute;
         width: inherit;
         height: calc(100% + 1rem);
-        bottom: 0;
+        box-sizing: none;
+        bottom: 0px;
         box-shadow: 0 0 5px 1px #111;
         border-radius: 5px;
     }
