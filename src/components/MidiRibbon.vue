@@ -7,8 +7,8 @@ export default {
     mounted() {
         this.el = this.$refs.ribbon;
         this.ribbonClientHeight = this.el.clientHeight;
-        this.ribbonAnimation = this.el.animate(this.ribbonExtend, this.ribbonTiming);
-        this.el.animate(this.ribbonRounded, this.ribbonTiming)
+        this.ribbonAnimation = this.el.animate(this.ribbonExtend, this.ribbonDuration);
+        this.el.animate(this.ribbonRounded, this.ribbonDuration)
     },
     name: 'midi-ribbon',
     emits: ['destroy'],
@@ -19,14 +19,10 @@ export default {
             ribbonClientHeight: 0,
             ribbonAnimation: null,
             ribbonExtend: [
-                { transform: 'translateY(50%)scaleY(0)' },
-                { transform: 'none' }
+                { height: '0' },
+                { height: '100%' }
             ],
-            ribbonRounded: [
-                { 'border-radius': '0px' },
-                { 'border-radius': '1000px' }
-            ],
-            ribbonTiming: { duration: 2000 },
+            ribbonDuration: 2000,
             isReleased: false,
         }
     },
@@ -38,7 +34,7 @@ export default {
     methods: {
         async releaseRibbon() {
             this.ribbonAnimation.oncancel = () => {
-                let anime = this.el.animate(this.ribbonRelease, this.ribbonTiming);
+                let anime = this.el.animate(this.ribbonRelease, this.ribbonDuration);
                 anime.onfinish = this.emitDestroy;   
             };
             this.el.style.height = this.ribbonHeight+'px';
@@ -70,7 +66,6 @@ export default {
     watch: {
         released() {
             if (!this.isReleased) {
-                this.ribbonAnimation.pause();
                 this.isReleased = true;
                 this.releaseRibbon();
             } 
@@ -84,8 +79,7 @@ export default {
         position: absolute;
         width: inherit;
         height: calc(100% + 1rem);
-        box-sizing: none;
-        bottom: 0px;
+        bottom: 0;
         box-shadow: 0 0 5px 1px #111;
         border-radius: 5px;
     }
