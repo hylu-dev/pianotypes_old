@@ -7,7 +7,7 @@
 
 <script>
 import RibbonBlock from './RibbonBlock'
-import KeyStateStore from '../stores/KeyStateStore'
+import KeyStateStore from '../../stores/KeyStateStore'
 
 export default {
     name: 'ribbon-lane',

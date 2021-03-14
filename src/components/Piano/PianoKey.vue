@@ -5,8 +5,8 @@
 </template>
 
 <script>
-import KeyStateStore from '../stores/KeyStateStore'
-import KeyBindingStore from '../stores/KeyBindingStore'
+import KeyStateStore from '../../stores/KeyStateStore'
+import KeyBindingStore from '../../stores/KeyBindingStore'
 
 export default {
     name: 'piano-key',

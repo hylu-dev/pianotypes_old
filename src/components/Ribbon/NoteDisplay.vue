@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import KeyStateStore from '../stores/KeyStateStore'
+import KeyStateStore from '../../stores/KeyStateStore'
 
 export default {
     name: 'note-display',

@@ -9,7 +9,7 @@
 
 import { defineAsyncComponent } from 'vue'
 import RibbonLane from './RibbonLane'
-import KeyStateStore from '../stores/KeyStateStore'
+import KeyStateStore from '../../stores/KeyStateStore'
 
 export default {
     name: 'ribbon-panel',

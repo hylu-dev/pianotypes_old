@@ -10,8 +10,8 @@
 </template>
 
 <script>
-import PianoKeyboard from '../components/PianoKeyboard'
-import RibbonPanel from '../components/RibbonPanel'
+import PianoKeyboard from '../components/Piano/PianoKeyboard'
+import RibbonPanel from '../components/Ribbon/RibbonPanel'
 
 export default {
   name: 'Home',
