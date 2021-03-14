@@ -22,9 +22,9 @@ export default {
                 { transform: 'translateY(50%)scaleY(0)' },
                 { transform: 'none' }
             ],
-            ribbonDuration: 2000,
+            ribbonDuration: 3000, //millis
             isReleased: false,
-            minHeight: 5 //pixels
+            minHeight: 5 //px
         }
     },
     props: {
@@ -84,7 +84,7 @@ export default {
         height: calc(100% + 1rem);
         box-sizing: none;
         bottom: 0px;
-        box-shadow: 0 0 5px 1px #111;
+        box-shadow: 0 0 7px 4px #111;
         border-radius: 5px;
     }
 
