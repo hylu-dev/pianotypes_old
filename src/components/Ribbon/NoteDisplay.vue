@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import KeyStateStore from '../../stores/KeyStateStore'
+import KeyStateStore from '@/stores/KeyStateStore'
 
 export default {
     name: 'note-display',
@@ -26,7 +26,7 @@ export default {
         color: var(--tertiary-text-colour);
     }
     .slide-fade-enter-active, .slide-fade-leave-active {
-        transition: all .8s cubic-bezier(0.19, 1, 0.22, 1);
+        transition: all .5s cubic-bezier(0.19, 1, 0.22, 1);
     }
     .slide-fade-enter, .slide-fade-leave-to
     {
