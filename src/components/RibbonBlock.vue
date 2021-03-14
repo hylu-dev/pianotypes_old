@@ -24,6 +24,7 @@ export default {
             ],
             ribbonDuration: 2000,
             isReleased: false,
+            minHeight: 5 //pixels
         }
     },
     props: {
@@ -32,12 +33,12 @@ export default {
         released: Boolean
     },
     methods: {
-        async releaseRibbon() {
+        releaseRibbon() {
             this.ribbonAnimation.oncancel = () => {
                 let anime = this.el.animate(this.ribbonRelease, this.ribbonDuration);
                 anime.onfinish = this.emitDestroy;   
             };
-            this.el.style.height = this.ribbonHeight+'px';
+            this.el.style.height = this.ribbonHeight;
             requestAnimationFrame(() => {
                 this.ribbonAnimation.cancel();
             })
@@ -55,7 +56,8 @@ export default {
             return classBinding;
         },
         ribbonHeight: function() {
-            return this.el.getBoundingClientRect().bottom - this.el.getBoundingClientRect().y;
+            let currentHeight = this.el.getBoundingClientRect().bottom - this.el.getBoundingClientRect().y;
+            return currentHeight < this.minHeight ? this.minHeight+'px' : currentHeight+'px';
         },
         ribbonRelease: function() {
             return [
