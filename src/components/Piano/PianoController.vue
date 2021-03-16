@@ -1,9 +1,9 @@
 <template>
     <form>
         <label>Range: </label>
-        <input type="text" id="min" v-model="this.minNote">
+        <input type="text" id="min" v-model="this.minNote" maxlength="3">
         →
-        <input type="text" id="max" v-model="this.maxNote">
+        <input type="text" id="max" v-model="this.maxNote" maxlength="3">
     </form>
 </template>
 
