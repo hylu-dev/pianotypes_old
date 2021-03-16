@@ -1,4 +1,4 @@
-import { Note, Scale } from "@tonaljs/tonal";
+import { Note, Range } from "@tonaljs/tonal";
 
 export default class PianoKeyboard {
     constructor(minNote, maxNote) {
@@ -9,8 +9,8 @@ export default class PianoKeyboard {
         this.init();
     }
     init() {
-        this.keyboard = Scale.rangeOf("C chromatic")(this.minNote, this.maxNote);
-        this.keyboardDict = this.keyboard.reduce((arr,curr)=> (arr[curr]={},arr),{})
+        this.keyboard = Note.sortedNames(Range.chromatic([this.minNote, this.maxNote]));
+        this.keyboardDict = this.keyboard.reduce((arr,curr) => (arr[curr]={},arr),{})
     }
     getKeyboard() {
         return this.keyboard;
