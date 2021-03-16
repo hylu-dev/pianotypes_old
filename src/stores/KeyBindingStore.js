@@ -1,4 +1,5 @@
 import { reactive } from 'vue';
+import { Note } from "@tonaljs/tonal";
 import keybindings from '@/json/keybindings'
 
 const KeyBindingStore = {
@@ -16,7 +17,7 @@ const KeyBindingStore = {
         let keybindings = ""
         if (note) {
             for (const [key, value] of Object.entries(this.state.bindings)) {
-                if (note == value.note) {
+                if (Note.midi(note) == Note.midi(value.note)) {
                     keybindings += key;
                 }
             }

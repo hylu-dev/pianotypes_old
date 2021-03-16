@@ -10,7 +10,7 @@ export default class PianoKeyboard {
     }
     init() {
         this.keyboard = Note.sortedNames(Range.chromatic([this.minNote, this.maxNote]));
-        this.keyboardDict = this.keyboard.reduce((arr,curr) => (arr[curr]={},arr),{})
+        this.keyboardDict = this.keyboard.reduce((arr,curr) => (arr[curr]={}, arr[Note.enharmonic(curr)]={}, arr), {})
     }
     getKeyboard() {
         return this.keyboard;
