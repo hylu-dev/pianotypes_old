@@ -1,13 +1,14 @@
 <template>
     <div :class="keyClasses">
-        <ribbon-block id="ribbon" v-for="(value, id) in ribbons" :key="id" :ribbonID="id" :isWhiteKey="isWhiteKey" :released="!isPressed" @destroy="destroyRibbon"></ribbon-block>
-        <div :class="keyClasses" :style="glowStyles"></div>
+            <ribbon-block id="ribbon" v-for="(value, id) in ribbons" :key="id" :ribbonID="id" :isWhiteKey="isWhiteKey" :released="!isPressed" @destroy="destroyRibbon"></ribbon-block>
+            <div :class="keyClasses" :style="glowStyles"></div>
     </div>
 </template>
 
 <script>
 import RibbonBlock from './RibbonBlock'
-import KeyStateStore from '../../stores/KeyStateStore'
+import KeyStateStore from '@/stores/KeyStateStore'
+import { Note } from "@tonaljs/tonal"
 
 export default {
     name: 'ribbon-lane',
@@ -20,7 +21,6 @@ export default {
     data() {
         return {
             ids: 0,
-            sharedKeyState: KeyStateStore.state,
             ribbons: {},
         }
     },
@@ -31,12 +31,11 @@ export default {
     },
     computed: {
         isWhiteKey: function() {
-            return this.note.includes('#') ? false : true;
+            return Note.accidentals(this.note) ? false : true;
         },
         keyClasses: function() {
             let classBinding = {}
-            const regex = /[cCdDfFgGaA#]/g;
-            this.note.search(regex) >= 0 ? classBinding["offset-key"] = true : classBinding["offset-key"] = false; // offset margin if key precedes|is a black key
+            Note.accidentals(Note.transpose(this.note, "2m")) ? classBinding["offset-key"] = true : classBinding["offset-key"] = false; // offset margin if key precedes|is a black key
             // add styles depending on key colour
             if (this.isWhiteKey) {
                 classBinding['white-key'] = true;

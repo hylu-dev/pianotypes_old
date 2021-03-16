@@ -1,18 +1,17 @@
 <template>
     <div ref="keyboard" :style="{}">
-        <div style="position: absolute;bottom: 5%;left: 5%;user-select: none;">
-            <h3>Pedal: {{isPedal}}</h3>
+        <div class="key-container">
+            <transition-group name="list">
+                <piano-key v-for="note in sharedKeyboard.getKeyboard()" :key="note" :note="note" @pressed="clickPressKey" @released="clickReleaseKey"></piano-key>
+            </transition-group>
         </div>
-        <transition-group name="list">
-            <piano-key v-for="note in sharedKeyState.keyboard.getKeyboard()" :key="note" :note="note" @pressed="clickPressKey" @released="clickReleaseKey"></piano-key>
-        </transition-group>
     </div>
 </template>
 
 <script>
 import PianoKey from './PianoKey'   
-import KeyStateStore from '../../stores/KeyStateStore'
-import KeyBindingStore from '../../stores/KeyBindingStore'
+import KeyStateStore from '@/stores/KeyStateStore'
+import KeyBindingStore from '@/stores/KeyBindingStore'
 
 export default {
     name: 'piano-keyboard',
@@ -44,10 +43,9 @@ export default {
                 gain: 2
                 }),
             isPedal: false,
-            sharedKeyState: KeyStateStore.state,
-            sharedBindingState: KeyBindingStore.state,
+            sharedKeyboard: KeyStateStore.state.keyboard,
             isMounted: false,
-            gainNodes: {},
+            gainNodes: {}
         }
     },
     methods: {
@@ -86,7 +84,7 @@ export default {
             }
         },
         upPedal(e) {
-            if (e.key == ' ') { 
+            if (e.key == ' ') {
                 this.isPedal = false;
                 for (let note in this.gainNodes) {
                     if (KeyStateStore.getKeyPressedState(note) == false) {
@@ -112,9 +110,17 @@ export default {
 </script>
 
 <style scoped>
-    #keyboard {
-        height: var(--piano-height);
+    #piano-keyboard {
         display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .key-container {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
         flex-flow: row;
     }
 
@@ -125,7 +131,7 @@ export default {
     .list-enter-from,
     .list-leave-to {
         opacity: 0;
-        transform: translateY(30px)scale(0)rotate(30deg);
+        transform: translateY(30px)scale(0)rotate(45deg);
     }
     .list-move {
         transition: transform .8s ease;

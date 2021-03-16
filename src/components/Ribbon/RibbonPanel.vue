@@ -1,7 +1,7 @@
 <template>
     <div>
         <note-display v-if="showDisplay" id="note-display"></note-display>
-        <ribbon-lane id="ribbon-lane" v-for="note in sharedKeyState.keyboard.getKeyboard()" :key="note" :note="note"></ribbon-lane>
+        <ribbon-lane id="ribbon-lane" v-for="note in sharedKeyboard.getKeyboard()" :key="note" :note="note"></ribbon-lane>
     </div>
 </template>
 
@@ -9,7 +9,7 @@
 
 import { defineAsyncComponent } from 'vue'
 import RibbonLane from './RibbonLane'
-import KeyStateStore from '../../stores/KeyStateStore'
+import KeyStateStore from '@/stores/KeyStateStore'
 
 export default {
     name: 'ribbon-panel',
@@ -19,7 +19,7 @@ export default {
     },
     data() {
         return {
-            sharedKeyState: KeyStateStore.state,
+            sharedKeyboard: KeyStateStore.state.keyboard,
             showDisplay: true
         }
     },
@@ -33,7 +33,6 @@ export default {
     #ribbon-panel {
         display: flex;
         flex-flow: row;
-        width: 100vw;
         align-items: flex-end;
         justify-content: center;
     }

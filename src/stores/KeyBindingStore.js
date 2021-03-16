@@ -1,5 +1,5 @@
 import { reactive } from 'vue';
-import keybindings from '../json/keybindings'
+import keybindings from '@/json/keybindings'
 
 const KeyBindingStore = {
     state: reactive({

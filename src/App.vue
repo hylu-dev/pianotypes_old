@@ -11,7 +11,7 @@
         <router-link :to="{ name: 'Settings' }">
           <i class="icofont-options"></i> 
         </router-link>
-        <router-link :to="{ name: 'Settings' }">
+        <router-link :to="{ name: 'About' }">
           <i class="icofont-info-circle"></i>
         </router-link>
       </div>
@@ -22,7 +22,7 @@
           <component :is="Component" />
         </transition>
       </router-view>
-    </div>    
+    </div>
   </div>
 </template>
 
@@ -56,6 +56,7 @@ export default {
   nav {
     display: flex;
     background: var(--secondary-bg-colour);
+    border: none;
     width: 100%;
     height: 60px;
     font-size: 1rem;

@@ -5,8 +5,9 @@
 </template>
 
 <script>
-import KeyStateStore from '../../stores/KeyStateStore'
-import KeyBindingStore from '../../stores/KeyBindingStore'
+import KeyStateStore from '@/stores/KeyStateStore'
+import KeyBindingStore from '@/stores/KeyBindingStore'
+import { Note } from "@tonaljs/tonal"
 
 export default {
     name: 'piano-key',
@@ -18,8 +19,8 @@ export default {
         return {
             isHover: false,
             showBindings: true,
-            sharedKeyState: KeyStateStore.state,
-            sharedBindingState: KeyBindingStore.state
+            sharedKeyboard: KeyStateStore.state.keyboard,
+            sharedBindings: KeyBindingStore.state.keybindings
         }
     },
     methods: {
@@ -36,12 +37,11 @@ export default {
     },
     computed: {
         isWhiteKey: function() {
-            return this.note.includes('#') ? false : true;
+            return Note.accidentals(this.note) ? false : true;
         },
         getKeyClasses() {
-            let classBinding = {}
-            const regex = /[cCdDfFgGaA#]/g;
-            this.note.search(regex) >= 0 ? classBinding["offset-key"] = true : classBinding["offset-key"] = false; // offset margin if key precedes|is a black key
+            let classBinding = {};
+            Note.accidentals(Note.transpose(this.note, "2m")) ? classBinding["offset-key"] = true : classBinding["offset-key"] = false; // offset margin if key precedes a black key
             // add styles depending on key colour
             if (this.isWhiteKey) {
                 classBinding['white-key'] = true;
@@ -52,10 +52,10 @@ export default {
                 classBinding['black-key--hover'] = this.isHover;
                 classBinding['black-key--pressed'] = this.isPressed;
             }
-            return classBinding
+            return classBinding;
         },
         isPressed: function() {
-            if (this.sharedKeyState.keyboard.getKeyboardDict()[this.note].isPressed) {
+            if (this.sharedKeyboard.getKeyboardDict()[this.note].isPressed) {
                 return true;
             }
             return false;
@@ -105,7 +105,7 @@ export default {
     .black-key {
         display: flex;
         justify-content: center;
-        width: var(--black-key-width);
+        min-width: var(--black-key-width);
         height: 50%;
         background: var(--black-key-colour);
         z-index: 3;

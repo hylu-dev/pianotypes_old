@@ -1,9 +1,9 @@
 import { reactive } from 'vue';
-import Keyboard from '../classes/Keyboard'
+import Piano from '@/classes/PianoKeyboard'
 
 const KeyStateStore = {
     state: reactive({
-        keyboard: new Keyboard("F", 2, "C", 6),
+        keyboard: new Piano("F2", "C6"),
         lastKey: ""
     }),
     updateKeyPressed(key) {
