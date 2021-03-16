@@ -7,6 +7,8 @@ const KeyBindingStore = {
     }),
     getKeyNoteBinding(keybinding) {
         if (this.state.bindings[keybinding]) { //key is bound
+            return this.state.bindings[keybinding].note;
+        } else if (this.state.bindings[keybinding.toLowerCase()]) {
             return this.state.bindings[keybinding.toLowerCase()].note;
         }
     },
