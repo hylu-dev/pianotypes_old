@@ -2,7 +2,7 @@
     <div ref="keyboard" :style="{}">
         <div class="key-container">
             <transition-group name="list">
-                <piano-key v-for="note in sharedKeyboard.getKeyboard()" :key="note" :note="note" @pressed="clickPressKey" @released="clickReleaseKey"></piano-key>
+                <piano-key id="piano-key" v-for="note in sharedKeyboard.getKeyboard()" :key="note" :note="note" @pressed="clickPressKey" @released="clickReleaseKey"></piano-key>
             </transition-group>
         </div>
     </div>

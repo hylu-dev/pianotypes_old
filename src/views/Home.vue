@@ -33,7 +33,7 @@ export default {
 <style scoped>
   .grid-container {
     height: 100%;
-    width: 100%;
+    width: 100vw;
     display: grid;
     grid-template-rows: 5fr var(--piano-height);
     grid-template-columns: [col-start] 1fr minmax(0, 5fr) 1fr [col-end];
@@ -48,7 +48,7 @@ export default {
 
   .piano-shadow {
     grid-area: 2 / col-start / 2 / col-end;
-    box-shadow: 0 0 5px black;
+    box-shadow: 0 0 10px black;
   }
 
   #piano-pedal {
@@ -60,7 +60,7 @@ export default {
     grid-area: piano;
     box-sizing: border-box;
     background: var(--tertiary-bg-colour);
-    box-shadow: inset 0 0 10px rgba(0, 0, 0, .5);
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, .5);
   }
 
   #piano-controller {

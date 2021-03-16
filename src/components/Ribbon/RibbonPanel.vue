@@ -1,7 +1,9 @@
 <template>
     <div>
         <note-display v-if="showDisplay" id="note-display"></note-display>
-        <ribbon-lane id="ribbon-lane" v-for="note in sharedKeyboard.getKeyboard()" :key="note" :note="note"></ribbon-lane>
+        <div class="lane-container">
+            <ribbon-lane id="ribbon-lane" v-for="note in sharedKeyboard.getKeyboard()" :key="note" :note="note"></ribbon-lane>
+        </div>
     </div>
 </template>
 
@@ -32,8 +34,15 @@ export default {
 <style scoped>
     #ribbon-panel {
         display: flex;
-        flex-flow: row;
-        align-items: flex-end;
         justify-content: center;
+        align-items: flex-end;
+    }
+
+    .lane-container {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        flex-flow: row;
     }
 </style>

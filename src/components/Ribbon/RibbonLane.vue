@@ -1,7 +1,7 @@
 <template>
     <div :class="keyClasses">
-            <ribbon-block id="ribbon" v-for="(value, id) in ribbons" :key="id" :ribbonID="id" :isWhiteKey="isWhiteKey" :released="!isPressed" @destroy="destroyRibbon"></ribbon-block>
-            <div :class="keyClasses" :style="glowStyles"></div>
+        <ribbon-block id="ribbon" v-for="(value, id) in ribbons" :key="id" :ribbonID="id" :isWhiteKey="isWhiteKey" :released="!isPressed" @destroy="destroyRibbon"></ribbon-block>
+        <div :style="glowStyles"></div>
     </div>
 </template>
 
@@ -79,7 +79,7 @@ export default {
     }
 
     .white-key {
-        width: calc(var(--white-key-width));
+        width: var(--white-key-width);
         border-left: var(--white-key-border-width) solid transparent;
         border-right: var(--white-key-border-width) solid transparent;
     }

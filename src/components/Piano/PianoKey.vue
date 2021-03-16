@@ -68,13 +68,16 @@ export default {
 </script>
 
 <style scoped>
+    #piano-key {
+        display: flex;
+        justify-content: center;
+    }
+
     .offset-key {
         margin-right: calc(var(--black-key-width)/-2);
     }
 
     .white-key {
-        display: flex;
-        justify-content: center;
         width: var(--white-key-width);
         border-left: var(--white-key-border-width) solid transparent;
         border-right: var(--white-key-border-width) solid transparent;
@@ -103,8 +106,6 @@ export default {
     }
 
     .black-key {
-        display: flex;
-        justify-content: center;
         min-width: var(--black-key-width);
         height: 50%;
         background: var(--black-key-colour);
