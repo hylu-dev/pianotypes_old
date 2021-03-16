@@ -2,9 +2,9 @@
   <div class="grid-container">
     <ribbon-panel v-if="showRibbonPanel" id="ribbon-panel"></ribbon-panel>
     <div class="piano-shadow"></div>
-    <piano-pedal id="piano-pedal"></piano-pedal>
+    <piano-pedal v-if="true" id="piano-pedal"></piano-pedal>
     <piano-keyboard v-if="true" id="piano-keyboard"></piano-keyboard>
-    <piano-controller id="piano-controller"></piano-controller>
+    <piano-controller v-if="true"  id="piano-controller"></piano-controller>
   </div>
 </template>
 
@@ -33,7 +33,7 @@ export default {
 <style scoped>
   .grid-container {
     height: 100%;
-    width: 100vw;
+    width: 100%;
     display: grid;
     grid-template-rows: 5fr var(--piano-height);
     grid-template-columns: [col-start] 1fr minmax(0, 5fr) 1fr [col-end];
