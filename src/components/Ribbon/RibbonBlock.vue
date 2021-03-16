@@ -80,7 +80,7 @@ export default {
 <style scoped>
     #ribbon {
         position: absolute;
-        width: inherit;
+        width: 100%;
         height: calc(100% + 1rem);
         box-sizing: none;
         bottom: 0px;
