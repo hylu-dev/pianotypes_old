@@ -31,17 +31,21 @@ export default class PianoKeyboard {
     }
     //keys
     pressKey(note) {
+        if (!(this.keyboardDict[note] || this.keyboardDict[Note.enharmonic(note)])) { return; } //Check note is part of piano range
         this.keyboardDict[note].isPressed = this.keyboardDict[Note.enharmonic(note)].isPressed = true;
         if (this.gainNodes[note]) { this.gainNodes[note].stop(); }
         this.instrument.then((instr) => { this.gainNodes[note] = instr.play(note, 0, 1); });
         this.lastKey = note;
     }
     releaseKey(note) {
+        if (!(this.keyboardDict[note] || this.keyboardDict[Note.enharmonic(note)])) { return; } //Check note is part of piano range
         this.keyboardDict[note].isPressed = this.keyboardDict[Note.enharmonic(note)].isPressed = false;
         this.instrument.then(() => { if (!this.pedal && this.gainNodes[note]) { this.gainNodes[note].stop(); delete this.gainNodes[note]; } })
     }
     getIsPressed(note) {
-        return this.keyboardDict[note].isPressed || this.keyboardDict[Note.enharmonic(note)].isPressed ? true : false;
+        if (this.keyboardDict[note]) { return this.keyboardDict[note].isPressed; }
+        if (this.keyboardDict[note]) { return this.keyboardDict[note].isPressed; }
+        return false;
     }
     getLastKey() {
         return this.lastKey;
