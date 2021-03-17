@@ -3,6 +3,7 @@
     --primary-text-colour: rgb(187, 175, 106);
     --secondary-text-colour: #555;
     --tertiary-text-colour: #222;
+    --quaternary-text-colour: #AAA;
     --primary-bg-colour: rgb(22,22,22);
     --secondary-bg-colour: #222;
     --tertiary-bg-colour: rgb(28, 28, 28);
@@ -73,7 +74,7 @@ input {
 
 ::selection {
     background: #111;
-    color: var(--secondary-text-colour);
+    color: var(--quaternary-text-colour);
     border: 5px;
   }
 
