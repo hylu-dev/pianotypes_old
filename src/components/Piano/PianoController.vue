@@ -55,5 +55,6 @@ export default {
 
     input[type=text] {
         width: 3ch;
+        text-align: center;
     }
 </style>
