@@ -11,7 +11,7 @@
 
 import { defineAsyncComponent } from 'vue'
 import RibbonLane from './RibbonLane'
-import KeyStateStore from '@/stores/KeyStateStore'
+import PianoStateStore from '@/stores/PianoStateStore'
 
 export default {
     name: 'ribbon-panel',
@@ -21,7 +21,7 @@ export default {
     },
     data() {
         return {
-            sharedKeyboard: KeyStateStore.state.keyboard,
+            sharedKeyboard: PianoStateStore.state.keyboard,
             showDisplay: true
         }
     },

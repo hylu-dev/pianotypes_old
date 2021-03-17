@@ -1,21 +1,22 @@
 <template>
-    <form>
-        <label>Range: </label>
+    <div class="flex-container">
+        <form>
         <input type="text" id="min" v-model="this.minNote" maxlength="3">
         →
         <input type="text" id="max" v-model="this.maxNote" maxlength="3">
     </form>
+    </div>
 </template>
 
 <script>
-import KeyStateStore from '@/stores/KeyStateStore'
+import PianoStateStore from '@/stores/PianoStateStore'
 import KeyBindingStore from '@/stores/KeyBindingStore'
 
 export default {
     name: 'piano-controller',
     data() {
         return {
-            sharedKeyboard: KeyStateStore.state.keyboard,
+            sharedKeyboard: PianoStateStore.state.keyboard,
             sharedBindingState: KeyBindingStore.state
         }
     },
@@ -42,6 +43,11 @@ export default {
 </script>
 
 <style>
+    .flex-container {
+        display: flex;
+        justify-content: center;
+    }
+
     form {
         padding: 10%;
     }

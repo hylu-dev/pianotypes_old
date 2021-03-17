@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import KeyStateStore from '@/stores/KeyStateStore'
+import PianoStateStore from '@/stores/PianoStateStore'
 import KeyBindingStore from '@/stores/KeyBindingStore'
 import { Note } from "@tonaljs/tonal"
 
@@ -19,7 +19,7 @@ export default {
         return {
             isHover: false,
             showBindings: true,
-            sharedKeyboard: KeyStateStore.state.keyboard,
+            sharedKeyboard: PianoStateStore.state.keyboard,
             sharedBindings: KeyBindingStore.state.keybindings
         }
     },
@@ -41,7 +41,7 @@ export default {
         },
         getKeyClasses() {
             let classBinding = {};
-            Note.accidentals(Note.transpose(this.note, "2m")) ? classBinding["offset-key"] = true : classBinding["offset-key"] = false; // offset margin if key precedes a black key
+            classBinding["offset-key"] = Note.accidentals(Note.transpose(this.note, "2m")) ? true : false; // offset margin if key precedes a black key
             // add styles depending on key colour
             if (this.isWhiteKey) {
                 classBinding['white-key'] = true;
@@ -55,7 +55,7 @@ export default {
             return classBinding;
         },
         isPressed: function() {
-            if (KeyStateStore.getKeyPressedState(this.note)) {
+            if (this.sharedKeyboard.getIsPressed(this.note)) {
                 return true;
             }
             return false;

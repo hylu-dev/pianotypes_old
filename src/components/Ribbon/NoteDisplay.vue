@@ -5,13 +5,18 @@
 </template>
 
 <script>
-import KeyStateStore from '@/stores/KeyStateStore'
+import PianoStateStore from '@/stores/PianoStateStore'
 
 export default {
     name: 'note-display',
+    data() {
+        return {
+            sharedKeyboard: PianoStateStore.state.keyboard
+        }
+    },
     computed: {
         currentNote: function() {
-            return KeyStateStore.state.lastKey;
+            return this.sharedKeyboard.getLastKey();
         }
     }
 }

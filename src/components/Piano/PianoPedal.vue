@@ -1,12 +1,39 @@
 <template>
     <div>
-        <h3>Pedal</h3>
+        <h3>Pedal: {{ sharedKeyboard.getPedal() }}</h3>
     </div>
 </template>
 
 <script>
+import PianoStateStore from '@/stores/PianoStateStore'
+
 export default {
-    name:"piano-pedal"
+    created() {
+        window.addEventListener('keydown', this.downPedal),
+        window.addEventListener('keyup', this.upPedal)
+    },
+    beforeUnmount() {
+        window.removeEventListener('keydown', this.downPedal),
+        window.removeEventListener('keyup', this.upPedal)
+    },
+    name:"piano-pedal",
+    data() {
+        return {
+            sharedKeyboard: PianoStateStore.state.keyboard
+        }
+    },
+    methods: {
+        downPedal(e) {
+            if (e.key == ' ') { 
+                this.sharedKeyboard.pressPedal();
+            }
+        },
+        upPedal(e) {
+            if (e.key == ' ') {
+                this.sharedKeyboard.liftPedal();
+            }
+        }
+    }
 }
 </script>
 

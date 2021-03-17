@@ -1,4 +1,5 @@
 import { Note, Range } from "@tonaljs/tonal";
+import musyngkite from "@/json/musyngkite.json"
 
 export default class PianoKeyboard {
     constructor(minNote, maxNote) {
@@ -6,9 +7,19 @@ export default class PianoKeyboard {
         this.maxNote = maxNote;
         this.keyboard;
         this.keyboardDict;
+        this.pedal;
+        this.soundfont = musyngkite;
+        this.instrument = require('soundfont-player').instrument(new AudioContext(), 'acoustic_grand_piano', {
+                soundfont: 'MusyngKite',
+                gain: 2
+                });
+        this.gainNodes = {};
+        this.lastKey = "";
         this.init();
     }
     init() {
+        this.pedal = false;
+        this.instrument.then( (instr) => instr.stop());
         this.keyboard = Note.sortedNames(Range.chromatic([this.minNote, this.maxNote]));
         this.keyboardDict = this.keyboard.reduce((arr,curr) => (arr[curr]={}, arr[Note.enharmonic(curr)]={}, arr), {})
     }
@@ -18,6 +29,40 @@ export default class PianoKeyboard {
     getKeyboardDict() {
         return this.keyboardDict;
     }
+    //keys
+    pressKey(note) {
+        this.keyboardDict[note].isPressed = this.keyboardDict[Note.enharmonic(note)].isPressed = true;
+        if (this.gainNodes[note]) { this.gainNodes[note].stop(); }
+        this.instrument.then((instr) => { this.gainNodes[note] = instr.play(note, 0, 1); });
+        this.lastKey = note;
+    }
+    releaseKey(note) {
+        this.keyboardDict[note].isPressed = this.keyboardDict[Note.enharmonic(note)].isPressed = false;
+        this.instrument.then(() => { if (!this.pedal && this.gainNodes[note]) { this.gainNodes[note].stop(); delete this.gainNodes[note]; } })
+    }
+    getIsPressed(note) {
+        return this.keyboardDict[note].isPressed || this.keyboardDict[Note.enharmonic(note)].isPressed ? true : false;
+    }
+    getLastKey() {
+        return this.lastKey;
+    }
+    //pedal
+    getPedal() {
+        return this.pedal;
+    }
+    pressPedal() {
+        this.pedal = true;
+    }
+    liftPedal() {
+        this.pedal = false;
+        for (let note in this.gainNodes) {
+            if (this.keyboardDict[note].isPressed == false) {
+                this.gainNodes[note].stop();
+                delete this.gainNodes[note];
+            }
+        }
+    }
+    //range
     getMin() {
         return this.minNote;
     }

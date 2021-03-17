@@ -60,7 +60,6 @@ export default {
     grid-area: piano;
     box-sizing: border-box;
     background: var(--tertiary-bg-colour);
-    box-shadow: inset 0 0 5px rgba(0, 0, 0, .5);
   }
 
   #piano-controller {

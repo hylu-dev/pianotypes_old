@@ -7,7 +7,7 @@
 
 <script>
 import RibbonBlock from './RibbonBlock'
-import KeyStateStore from '@/stores/KeyStateStore'
+import PianoStateStore from '@/stores/PianoStateStore'
 import { Note } from "@tonaljs/tonal"
 
 export default {
@@ -22,6 +22,7 @@ export default {
         return {
             ids: 0,
             ribbons: {},
+            sharedKeyboard: PianoStateStore.state.keyboard
         }
     },
     methods: {
@@ -35,7 +36,7 @@ export default {
         },
         keyClasses: function() {
             let classBinding = {}
-            Note.accidentals(Note.transpose(this.note, "2m")) ? classBinding["offset-key"] = true : classBinding["offset-key"] = false; // offset margin if key precedes|is a black key
+            classBinding["offset-key"] = Note.accidentals(Note.transpose(this.note, "2m")) ? true : false; // offset margin if key precedes|is a black key
             // add styles depending on key colour
             if (this.isWhiteKey) {
                 classBinding['white-key'] = true;
@@ -48,7 +49,7 @@ export default {
             return this.isPressed ? { height: 0, alignSelf: 'flex-end', boxShadow: '0 0 10px 5px rgba(218, 165, 32)', zIndex: 2 } : {};
         },
         isPressed: function() {
-            if (KeyStateStore.getKeyPressedState(this.note)) {
+            if (this.sharedKeyboard.getIsPressed(this.note)) {
                 return true;
             }
             return false;
