@@ -46,6 +46,7 @@ export default {
     .flex-container {
         display: flex;
         justify-content: center;
+        user-select: none;
     }
 
     form {
