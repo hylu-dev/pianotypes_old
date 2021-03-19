@@ -9,7 +9,7 @@
     --tertiary-bg-colour: rgb(28, 28, 28);
 
     /* piano styling */
-    --piano-height: 10vw;
+    --piano-height: 16vh;
     --white-key-width: calc(var(--piano-height)/3.3);
     --white-key-border-width: 1px;
     --black-key-width: calc(var(--white-key-width)/2);
