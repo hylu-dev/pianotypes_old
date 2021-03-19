@@ -20,7 +20,7 @@ export default {
             isHover: false,
             showBindings: true,
             sharedKeyboard: PianoStateStore.state.keyboard,
-            sharedBindings: KeyBindingStore.state.keybindings
+            sharedBindings: KeyBindingStore.state.pianoBindings
         }
     },
     methods: {
@@ -61,7 +61,7 @@ export default {
             return false;
         },
         binding: function() {
-            return KeyBindingStore.getNoteKeyBinding(this.note);
+            return this.sharedBindings.getNoteKeyBinding(this.note);
         }
     }
 }
@@ -87,7 +87,7 @@ export default {
     }
 
     .white-key h1 {
-        color: rgba(0, 0, 0, 0.2);
+        color: rgba(0, 0, 0, 0.3);
         align-self: flex-end;
         user-select: none;
         font-size: var(--key-label-size);
@@ -114,7 +114,7 @@ export default {
     }
 
     .black-key h1 {
-        color: rgba(255, 255, 255, 0.3);
+        color: rgba(255, 255, 255, 0.4);
         user-select: none;
         align-self: flex-end;
         font-size: var(--key-label-size);

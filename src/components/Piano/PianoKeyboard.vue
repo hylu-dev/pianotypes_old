@@ -31,18 +31,23 @@ export default {
     },
     data() {
         return {
-            sharedKeyboard: PianoStateStore.state.keyboard
+            sharedKeyboard: PianoStateStore.state.keyboard,
+            sharedBindings: KeyBindingStore.state.pianoBindings
         }
     },
     methods: {
         pressKey(e) {
+            // override quickfind on firefox
+            if ("'/".includes(e.key)) {
+                e.preventDefault();
+            }
             if (e.repeat) { return }
-            let note = KeyBindingStore.getKeyNoteBinding(e.key);
+            let note = this.sharedBindings.getKeyNoteBinding(e.key);
             if (note) { this.sharedKeyboard.pressKey(note); }   
         },
         releaseKey(e) {
             if (e.repeat) { return }
-            let note = KeyBindingStore.getKeyNoteBinding(e.key);
+            let note = this.sharedBindings.getKeyNoteBinding(e.key);
             if (note) { this.sharedKeyboard.releaseKey(note); }
         },
         clickPressKey(note) {
@@ -70,7 +75,7 @@ export default {
         height: 100%;
         display: flex;
         justify-content: center;
-        flex-flow: row;
+        flex-flow: row nowrap;
     }
 
     .list-enter-active,

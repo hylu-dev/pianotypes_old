@@ -46,7 +46,7 @@ export default {
             return classBinding
         },
         glowStyles: function() {
-            return this.isPressed ? { height: 0, alignSelf: 'flex-end', boxShadow: '0 0 10px 5px rgba(218, 165, 32)', zIndex: 2 } : {};
+            return this.isPressed ? { height: 0, alignSelf: 'flex-end', boxShadow: '0 0 25px 15px goldenrod', zIndex: 2 } : {};
         },
         isPressed: function() {
             if (this.sharedKeyboard.getIsPressed(this.note)) {
