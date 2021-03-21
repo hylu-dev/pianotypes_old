@@ -1,21 +1,27 @@
 <template>
   <div class="vertical-flex-container">
     <nav>
-      <div class="author-links"></div>
+      <div class="author-links">
+
+      </div>
+
       <div class="title-link">
         <router-link to="/">
           <h1>pianotypes</h1>
         </router-link>
       </div>
+
       <div class="menu-container">
         <router-link :to="{ name: 'Settings' }">
-          <i class="icofont-options"></i> 
+          <i class="icon-options"></i> 
         </router-link>
         <router-link :to="{ name: 'About' }">
-          <i class="icofont-info-circle"></i>
+          <i class="icon-info"></i>
         </router-link>
       </div>
+
     </nav>
+
     <div class="vertical-flex-child">
       <router-view v-slot="{ Component }">
         <transition name="fade" mode="out-in">
@@ -60,7 +66,7 @@ export default {
     width: 100%;
     height: 60px;
     font-size: 1rem;
-    justify-content: space-evenly;
+    justify-content: space-around;
     align-items: center; /* align vertical */
     box-shadow: 0 0 10px black;
     user-select: none;
@@ -101,21 +107,22 @@ export default {
     display: flex;
     justify-content: flex-end;
     font-size: 2rem;
+    gap: 1rem;
   }
 
-  .icofont-options, .icofont-info-circle {
+  .icon-options, .icon-info {
     display: inline-block;
     transition: all .4s ease-in-out;
   }
 
-  .icofont-options:hover {
+  .icon-options:hover {
     color: var(--primary-text-colour);
     transform: rotate(90deg);
   }
 
-  .icofont-info-circle:hover {
+  .icon-info:hover {
     color: var(--primary-text-colour);
-    transform: rotate(-360deg);
+    transform: rotate(360deg);
   }
 
   .fade-enter-active, .fade-leave-active {

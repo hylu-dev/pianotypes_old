@@ -1,13 +1,13 @@
 <template>
     <div class="flex-container">
-    <form>
-        <input type="text" id="min" v-model="this.minNote" maxlength="3">
-        →
-        <input type="text" id="max" v-model="this.maxNote" maxlength="3">
-    </form>
-    <form>
-    <input type="text" id="max" v-model="this.noteBinding" maxlength="3">
-    </form>
+        <div class="input-container">
+            <input type="text" id="min" v-model="this.minNote" maxlength="3" @keypress.enter="$event.target.blur()">
+            →
+            <input type="text" id="max" v-model="this.maxNote" maxlength="3" @keypress.enter="$event.target.blur()">
+        </div>
+        <div>
+            <input type="text" id="max" v-model="this.noteBinding" maxlength="3" @keypress.enter="$event.target.blur()">
+        </div> 
     </div>
 </template>
 
@@ -68,7 +68,7 @@ export default {
             get() {
                 return this.sharedBindings.getBase();
             }
-        }
+    }
     }
 }
 
@@ -82,11 +82,12 @@ export default {
         flex-flow: column;
     }
 
-    form {
+    .input-container {
         padding: 10px;
         display: flex;
         justify-content: center;
         flex-flow: row nowrap;
+        gap: 1rem;
     }
 
     input[type=text] {

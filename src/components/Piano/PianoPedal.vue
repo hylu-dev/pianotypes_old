@@ -1,7 +1,8 @@
 <template>
-    <div>
-        <h3>Pedal:</h3>
-        <h3>{{ sharedKeyboard.getPedal() }}</h3>
+    <div class="pedal-container">
+        <div class="icon-soft-pedal"></div>
+        <div class="icon-sostenuto-pedal"></div>
+        <div class="icon-sustain-pedal" :class="{ pressed: isSustain }" @click="downSustainPedal"></div>
     </div>
 </template>
 
@@ -10,12 +11,12 @@ import PianoStateStore from '@/stores/PianoStateStore'
 
 export default {
     created() {
-        window.addEventListener('keydown', this.downPedal),
-        window.addEventListener('keyup', this.upPedal)
+        window.addEventListener('keydown', this.downSustainPedal),
+        window.addEventListener('keyup', this.upSustainPedal)
     },
     beforeUnmount() {
-        window.removeEventListener('keydown', this.downPedal),
-        window.removeEventListener('keyup', this.upPedal)
+        window.removeEventListener('keydown', this.downSustainPedal),
+        window.removeEventListener('keyup', this.upSustainPedal)
     },
     name:"piano-pedal",
     data() {
@@ -24,15 +25,22 @@ export default {
         }
     },
     methods: {
-        downPedal(e) {
-            if (e.key == ' ') { 
-                this.sharedKeyboard.pressPedal();
+        downSustainPedal(e) {
+            if (e.keyCode == 32) { 
+                this.sharedKeyboard.pressSustainPedal();
+            } else if (!e.keyCode) { //if not a keypress than it is a click
+                this.sharedKeyboard.getSustainPedal() ? this.sharedKeyboard.liftSustainPedal() : this.sharedKeyboard.pressSustainPedal();
             }
         },
-        upPedal(e) {
-            if (e.key == ' ') {
-                this.sharedKeyboard.liftPedal();
+        upSustainPedal(e) {
+            if (e.keyCode == 32) {
+                this.sharedKeyboard.liftSustainPedal();
             }
+        }
+    },
+    computed: {
+        isSustain: function() {
+            return this.sharedKeyboard.getSustainPedal();
         }
     }
 }
@@ -41,13 +49,26 @@ export default {
 <style>
     #piano-pedal {
         user-select: none;
-        display: flex;
-        justify-content: center;
-        flex-flow: column nowrap;
     }
 
-    #piano-pedal h3 {
-        text-align: center;
-        line-height: 0;
+    .pedal-container {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        padding: 20%;
+    }
+
+    .icon-soft-pedal, .icon-sostenuto-pedal, .icon-sustain-pedal {
+        font-size: 5rem;
+        color: var(--tertiary-text-colour);
+        transition: all .3s ease-in-out;
+    }
+
+    .icon-soft-pedal:hover, .icon-sostenuto-pedal:hover, .icon-sustain-pedal:hover {
+        filter: brightness(1.5);
+    }
+
+    .pressed {
+        color: var(--primary-text-colour);
     }
 </style>

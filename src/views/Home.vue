@@ -46,11 +46,6 @@ export default {
     grid-area: main-panel;
   }
 
-  .piano-shadow {
-    grid-area: 2 / col-start / 2 / col-end;
-    box-shadow: 0 0 10px black;
-  }
-
   #piano-pedal {
     grid-area: piano-left;
     background: var(--secondary-bg-colour);
