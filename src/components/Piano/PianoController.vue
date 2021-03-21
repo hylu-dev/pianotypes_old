@@ -2,7 +2,7 @@
     <div class="flex-container">
         <div class="input-container">
             <input type="text" id="min" v-model="this.minNote" maxlength="3" @keypress.enter="$event.target.blur()">
-            ➞
+            ›
             <input type="text" id="max" v-model="this.maxNote" maxlength="3" @keypress.enter="$event.target.blur()">
         </div>
         <div class="input-container">

@@ -16,14 +16,14 @@ import KeyBindingStore from '@/stores/KeyBindingStore'
 export default {
     name: 'piano-keyboard',
     created() {
-        window.addEventListener('keydown', this.pressKey),
-        window.addEventListener('keyup', this.releaseKey),
-        window.addEventListener('blur', this.clearKeyStates)
+        window.addEventListener('keydown', this.pressKey);
+        window.addEventListener('keyup', this.releaseKey);
+        window.addEventListener('blur', this.clearKeyStates);
     },
     beforeUnmount() {
-        window.removeEventListener('keydown', this.pressKey),
-        window.removeEventListener('keyup', this.releaseKey),
-        window.removeEventListener('blur', this.clearKeyStates)
+        window.removeEventListener('keydown', this.pressKey);
+        window.removeEventListener('keyup', this.releaseKey);
+        window.removeEventListener('blur', this.clearKeyStates);
         this.clearKeyStates();
     },
     components: {

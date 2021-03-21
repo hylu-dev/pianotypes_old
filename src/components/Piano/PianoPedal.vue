@@ -62,7 +62,7 @@ export default {
         font-size: 5vw;
         color: var(--tertiary-text-colour);
         transform:rotate3d(1, 0, 0, 45deg);
-        transition: all .3s ease-in-out;
+        transition: all .4s cubic-bezier(0.075, 0.82, 0.165, 1);
     }
 
     .icon-soft-pedal:hover, .icon-sostenuto-pedal:hover, .icon-sustain-pedal:hover {
