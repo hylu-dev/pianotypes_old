@@ -63,8 +63,12 @@ export default class KeyBindingStore {
             this.__bindToScale(this.rr3, this.rr4, chromatic, index);
         }
     }
+    getMode() {
+        return this.mode;
+    }
     setMode(mode) {
         this.mode = mode;
+        this.createBindings();
     }
     getBase() {
         return this.base;
