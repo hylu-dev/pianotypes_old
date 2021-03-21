@@ -4,11 +4,11 @@ export default class KeyBindingStore {
     constructor(base) {
         this.bindings = {};
         this.r1 = ['z','x','c','v','b','n','m',',','.','/'];
-        this.r2 = ['a','s','d','f','g','h','j','k','l',';',','];
+        this.r2 = ['a','s','d','f','g','h','j','k','l',';',"'"];
         this.r3 = ['q','w','e','r','t','y','u','i','o','p','[',']'];
         this.r4 = ['1','2','3','4','5','6','7','8','9','0','-','='];
         this.mode = 0;
-        this.maxNote = "C8";
+        this.maxNote = "C9";
         this.base = base;
         this.createBindings();
     }
@@ -22,7 +22,7 @@ export default class KeyBindingStore {
         let index3 = 0; // row3 white keys
         let index4 = 0; // row4 black keys  
         let noteIndex = 0;
-        if (isWhite(chromatic[noteIndex])) { index2++ }
+        if (isWhite(chromatic[noteIndex])) { index2++; } // shift blacks keys 1 if starting on white
         while (index1<this.r1.length && noteIndex<chromatic.length) {
             let note = chromatic[noteIndex++];
             isWhite(note) ? this.bindings[this.r1[index1++]] = note : this.bindings[this.r2[index2++]] = note
@@ -30,7 +30,8 @@ export default class KeyBindingStore {
                 index2+=1;
             }
         }
-        if (isWhite(chromatic[noteIndex])) { index4++ }
+        if (!isWhite(chromatic[noteIndex])) { this.bindings[this.r2[index2++]] = chromatic[noteIndex]; } //include apostrophe binding if possible
+        if (isWhite(chromatic[noteIndex])) { index4++; } // shift blacks keys 1 if starting on white
         while (index3<this.r3.length && noteIndex<chromatic.length) {
             let note = chromatic[noteIndex++];
             isWhite(note) ? this.bindings[this.r3[index3++]] = note : this.bindings[this.r4[index4++]] = note

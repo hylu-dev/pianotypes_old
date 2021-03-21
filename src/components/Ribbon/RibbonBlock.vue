@@ -84,8 +84,8 @@ export default {
         height: calc(100% + 1rem);
         box-sizing: none;
         bottom: 0px;
-        box-shadow: 0 0 7px 4px #111;
-        border-radius: .5vw;
+        box-shadow: 0 0 .5vw .1vw #111;
+        border-radius: .3vw;
     }
 
     .white-ribbon {
