@@ -83,15 +83,17 @@ export default {
     }
 
     .input-container {
-        padding: 10px;
         display: flex;
         justify-content: center;
         flex-flow: row nowrap;
-        gap: 1rem;
+        padding: 1vw;
+        gap: 1vw;
+        font-size: 2vw;
     }
 
     input[type=text] {
         width: 4ch;
+        font-size: 1vw;
         text-align: center;
         text-transform: uppercase;
     }

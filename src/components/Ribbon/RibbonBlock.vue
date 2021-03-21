@@ -85,7 +85,7 @@ export default {
         box-sizing: none;
         bottom: 0px;
         box-shadow: 0 0 7px 4px #111;
-        border-radius: 5px;
+        border-radius: .5vw;
     }
 
     .white-ribbon {

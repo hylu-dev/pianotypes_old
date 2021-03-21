@@ -59,7 +59,7 @@ export default {
     }
 
     .icon-soft-pedal, .icon-sostenuto-pedal, .icon-sustain-pedal {
-        font-size: 5rem;
+        font-size: 5vw;
         color: var(--tertiary-text-colour);
         transform:rotate3d(1, 0, 0, 45deg);
         transition: all .3s ease-in-out;

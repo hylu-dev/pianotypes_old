@@ -26,7 +26,7 @@ export default {
     #note-display {
         position: absolute;
         align-self: center;
-        font-size: 10rem;
+        font-size: 10vw;
         user-select: none;
         color: var(--tertiary-text-colour);
     }

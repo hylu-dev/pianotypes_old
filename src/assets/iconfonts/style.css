@@ -33,10 +33,13 @@
 }
 .icon-soft-pedal:before {
   content: "\e902";
+  transform:rotate3d(1, 0, 0, 45deg);
 }
 .icon-sostenuto-pedal:before {
   content: "\e903";
+  transform:rotate3d(1, 0, 0, 45deg);
 }
 .icon-sustain-pedal:before {
   content: "\e904";
+  transform:rotate3d(1, 0, 0, 45deg);
 }
