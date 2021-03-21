@@ -20,13 +20,13 @@ export default {
         }
     }
 }
-</script>
+</script>   
 
 <style>
     #note-display {
         position: absolute;
         align-self: center;
-        font-size: 10vw;
+        font-size: min(10rem, 15vw);
         user-select: none;
         color: var(--tertiary-text-colour);
     }

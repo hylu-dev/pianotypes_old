@@ -9,9 +9,12 @@ export default class PianoKeyboard {
         this.keyboardDict;
         this.sustainPedal;
         this.soundfont = musyngkite;
-        this.instrument = require('soundfont-player').instrument(new AudioContext(), 'acoustic_grand_piano', {
+        this.gain = 4;
+        this.instrument = 'acoustic_grand_piano';
+        this.player = require('soundfont-player').instrument(new AudioContext(), this.instrument, {
                 soundfont: 'MusyngKite',
-                gain: 2
+                gain: this.gain,
+                sustain: 1
                 });
         this.gainNodes = {};
         this.lastKey = "";
@@ -19,7 +22,7 @@ export default class PianoKeyboard {
     }
     init() {
         this.gainNodes = {};
-        this.instrument.then( (instr) => instr.stop());
+        this.player.then( (instr) => instr.stop());
         this.keyboard = Note.sortedNames(Range.chromatic([this.minNote, this.maxNote]));
         this.keyboardDict = this.keyboard.reduce((arr,curr) => (arr[curr]={}, arr[Note.enharmonic(curr)]={}, arr), {})
     }
@@ -34,13 +37,13 @@ export default class PianoKeyboard {
         if (!(this.keyboardDict[note] || this.keyboardDict[Note.enharmonic(note)])) { return; } //Check note is part of piano range
         this.keyboardDict[note].isPressed = this.keyboardDict[Note.enharmonic(note)].isPressed = true;
         if (this.gainNodes[note]) { this.gainNodes[note].stop(); }
-        this.instrument.then((instr) => { this.gainNodes[note] = instr.play(note, 0, 1); });
+        this.player.then((instr) => { this.gainNodes[note] = instr.play(note, 0, 1); });
         this.lastKey = note;
     }
     releaseKey(note) {
         if (!(this.keyboardDict[note] || this.keyboardDict[Note.enharmonic(note)])) { return; } //Check note is part of piano range
         this.keyboardDict[note].isPressed = this.keyboardDict[Note.enharmonic(note)].isPressed = false;
-        this.instrument.then(() => { if (!this.sustainPedal && this.gainNodes[note]) { this.gainNodes[note].stop(); delete this.gainNodes[note]; } })
+        this.player.then(() => { if (!this.sustainPedal && this.gainNodes[note]) { this.gainNodes[note].stop(); delete this.gainNodes[note]; } })
     }
     getIsPressed(note) {
         if (this.keyboardDict[note]) { return this.keyboardDict[note].isPressed; }
@@ -71,8 +74,8 @@ export default class PianoKeyboard {
         return this.minNote;
     }
     setMin(note) {
-        if (Note.octave(note) >= 0) {
-            this.minNote = Note.name(note);
+        if (Note.octave(note) >= 0 && Note.octave(note) < 9) {
+            this.minNote = Note.simplify(note);
             this.init();
         }
     }
@@ -80,8 +83,8 @@ export default class PianoKeyboard {
         return this.maxNote;
     }
     setMax(note) {
-        if (Note.octave(note) >= 0) {
-            this.maxNote = Note.name(note);
+        if (Note.octave(note) >= 0 && Note.octave(note) < 9) {
+            this.maxNote = Note.simplify(note);
             this.init();
         }
     }

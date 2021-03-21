@@ -1,10 +1,9 @@
 <template>
   <div class="grid-container">
-    <ribbon-panel v-if="showRibbonPanel" id="ribbon-panel"></ribbon-panel>
-    <div class="piano-shadow"></div>
-    <piano-pedal v-if="true" id="piano-pedal"></piano-pedal>
-    <piano-keyboard v-if="true" id="piano-keyboard"></piano-keyboard>
-    <piano-controller v-if="true"  id="piano-controller"></piano-controller>
+    <ribbon-panel v-if="renderRibbonPanel" id="ribbon-panel"></ribbon-panel>
+    <piano-pedal v-if="renderPedal" id="piano-pedal"></piano-pedal>
+    <piano-keyboard v-if="renderPiano" id="piano-keyboard"></piano-keyboard>
+    <piano-controller v-if="renderController" id="piano-controller"></piano-controller>
   </div>
 </template>
 
@@ -18,7 +17,11 @@ export default {
   name: 'Home',
   data() {
     return {
-      showRibbonPanel: true
+      renderRibbonPanel: true,
+      renderPedal: true,
+      renderPiano: true,
+      renderController: true,
+      windowWidth: 0
     }
   },
   components: {
@@ -35,7 +38,7 @@ export default {
     height: 100%;
     width: 100%;
     display: grid;
-    grid-template-rows: 5fr var(--piano-height);
+    grid-template-rows: [row-start] 5fr var(--piano-height) [row-end];
     grid-template-columns: [col-start] 1fr minmax(0, 5fr) 1fr [col-end];
     grid-template-areas: 
     "panel-left main-panel panel-right"
@@ -61,4 +64,21 @@ export default {
     grid-area: piano-right;
     background: var(--secondary-bg-colour);
   }
+
+  @media only screen and (max-width: 1200px) {
+    #piano-pedal {
+      display: none;
+    }
+    #piano-keyboard {
+      grid-area: 2 / col-start / 2 / col-end;
+      width: 100vw;
+    }
+    #ribbon-panel {
+      grid-area: 1 / col-start / 1 / col-end;
+      width: 100vw;
+    }
+    #piano-controller {
+      display: none;
+    }
+}
 </style>

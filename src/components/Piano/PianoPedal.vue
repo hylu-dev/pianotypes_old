@@ -53,9 +53,9 @@ export default {
 
     .pedal-container {
         display: flex;
-        justify-content: space-evenly;
+        justify-content: center;
         align-items: center;
-        padding: 20%;
+        gap: 1vh;
     }
 
     .icon-soft-pedal, .icon-sostenuto-pedal, .icon-sustain-pedal {
