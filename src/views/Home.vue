@@ -65,7 +65,7 @@ export default {
     background: var(--secondary-bg-colour);
   }
 
-  @media only screen and (max-width: 1200px) {
+  @media only screen and (max-width: 800px) {
     #piano-pedal {
       display: none;
     }
