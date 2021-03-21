@@ -17,7 +17,7 @@ export default class KeyBindingStore {
         this.rr2 = this.r2.slice(this.r2.length/2, this.r2.length);
         this.rr3 = this.r3.slice(this.r3.length/2, this.r3.length);
         this.rr4 = this.r4.slice(this.r4.length/2, this.r4.length);
-        this.mode = 2; // 0 for no bindings | 1 for normal mode | 2 for split mode
+        this.mode = 1; // 0 for no bindings | 1 for normal mode | 2 for split mode
         this.maxNote = "C9";
         this.base = base;
         this.splitOffset = 6; // for split mode
