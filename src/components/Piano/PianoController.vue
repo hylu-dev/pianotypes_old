@@ -5,7 +5,7 @@
             →
             <input type="text" id="max" v-model="this.maxNote" maxlength="3" @keypress.enter="$event.target.blur()">
         </div>
-        <div>
+        <div class="input-container">
             <input type="text" id="max" v-model="this.noteBinding" maxlength="3" @keypress.enter="$event.target.blur()">
         </div> 
     </div>
@@ -78,15 +78,15 @@ export default {
     .flex-container {
         display: flex;
         justify-content: center;
-        user-select: none;
         flex-flow: column;
+        user-select: none;
     }
 
     .input-container {
         display: flex;
         justify-content: center;
         flex-flow: row nowrap;
-        padding: 1vw;
+        padding: .5vw;
         gap: 1vw;
         font-size: 2vw;
     }
