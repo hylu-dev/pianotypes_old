@@ -61,11 +61,12 @@ export default {
     .icon-soft-pedal, .icon-sostenuto-pedal, .icon-sustain-pedal {
         font-size: 5rem;
         color: var(--tertiary-text-colour);
+        transform:rotate3d(1, 0, 0, 45deg);
         transition: all .3s ease-in-out;
     }
 
     .icon-soft-pedal:hover, .icon-sostenuto-pedal:hover, .icon-sustain-pedal:hover {
-        filter: brightness(1.5);
+        filter: brightness(1.3);
     }
 
     .pressed {
