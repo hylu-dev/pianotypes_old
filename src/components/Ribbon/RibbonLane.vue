@@ -72,7 +72,6 @@ export default {
         display: flex;
         justify-content: center;
         height: 100%;
-        z-index: 2;
     }
 
     .offset-key {
@@ -83,11 +82,12 @@ export default {
         width: var(--white-key-width);
         border-left: var(--white-key-border-width) solid transparent;
         border-right: var(--white-key-border-width) solid transparent;
-        z-index: 0;
+        z-index: 0
     }
 
     .black-key {
         width: var(--black-key-width);
+        z-index: 1
     }
 
 </style>

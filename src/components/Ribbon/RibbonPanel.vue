@@ -1,6 +1,5 @@
 <template>
     <div>
-        <note-display v-if="showDisplay" id="note-display"></note-display>
         <div class="lane-container">
             <ribbon-lane id="ribbon-lane" v-for="note in sharedKeyboard.getKeyboard()" :key="note" :note="note"></ribbon-lane>
         </div>
@@ -9,20 +8,17 @@
 
 <script>
 
-import { defineAsyncComponent } from 'vue'
 import RibbonLane from './RibbonLane'
 import PianoStateStore from '@/stores/PianoStateStore'
 
 export default {
     name: 'ribbon-panel',
     components: {
-        RibbonLane,
-        NoteDisplay: defineAsyncComponent(() => import(/* webpackChunkName: "note-display" */ './NoteDisplay'))
+        RibbonLane
     },
     data() {
         return {
-            sharedKeyboard: PianoStateStore.state.keyboard,
-            showDisplay: true
+            sharedKeyboard: PianoStateStore.state.keyboard
         }
     },
     methods: {
@@ -33,6 +29,7 @@ export default {
 
 <style scoped>
     #ribbon-panel {
+        position: relative;
         display: flex;
         justify-content: center;
         align-items: flex-end;

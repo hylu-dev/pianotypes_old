@@ -1,5 +1,6 @@
 <template>
   <div class="grid-container">
+    <note-display v-if="renderDisplay" id="note-display"></note-display>
     <ribbon-panel v-if="renderRibbonPanel" id="ribbon-panel"></ribbon-panel>
     <piano-pedal v-if="renderPedal" id="piano-pedal"></piano-pedal>
     <piano-keyboard v-if="renderPiano" id="piano-keyboard"></piano-keyboard>
@@ -8,6 +9,7 @@
 </template>
 
 <script>
+import { defineAsyncComponent } from 'vue'
 import PianoKeyboard from '../components/Piano/PianoKeyboard'
 import PianoController from '../components/Piano/PianoController'
 import PianoPedal from '../components/Piano/PianoPedal'
@@ -17,6 +19,7 @@ export default {
   name: 'Home',
   data() {
     return {
+      renderDisplay: true,
       renderRibbonPanel: true,
       renderPedal: true,
       renderPiano: true,
@@ -28,7 +31,8 @@ export default {
     PianoKeyboard,
     PianoController,
     PianoPedal,
-    RibbonPanel
+    RibbonPanel,
+    NoteDisplay: defineAsyncComponent(() => import(/* webpackChunkName: "note-display" */ '../components/NoteDisplay'))
   }
 }
 </script>
@@ -43,6 +47,10 @@ export default {
     grid-template-areas: 
     "panel-left main-panel panel-right"
     "piano-left piano piano-right";
+  }
+
+  #note-display {
+    grid-area: main-panel;
   }
 
   #ribbon-panel {

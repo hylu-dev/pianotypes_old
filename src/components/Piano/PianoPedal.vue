@@ -1,8 +1,10 @@
 <template>
     <div class="pedal-container">
-        <div class="icon-soft-pedal"></div>
-        <div class="icon-sostenuto-pedal"></div>
-        <div class="icon-sustain-pedal" :class="{ pressed: isSustain }" @click="downSustainPedal"></div>
+        <div class="pedal-box">
+            <div class="icon-soft-pedal"></div>
+            <div class="icon-sostenuto-pedal"></div>
+            <div class="icon-sustain-pedal" :class="{ pressed: isSustain }" @click="downSustainPedal"></div>
+        </div>
     </div>
 </template>
 
@@ -55,11 +57,24 @@ export default {
         display: flex;
         justify-content: center;
         align-items: center;
+        padding-bottom: 3rem;
+        padding-top: 1rem;
+    }
+
+    .pedal-box {
+        display: flex;  
+        flex-flow: row;
+        justify-content: center;
+        align-items: flex-start;
         gap: 1vh;
+        height: 2.5vw;
+        border-radius: .3vw;
+        box-sizing: border-box;
+        background: var(--tertiary-bg-colour);
     }
 
     .icon-soft-pedal, .icon-sostenuto-pedal, .icon-sustain-pedal {
-        font-size: 5vw;
+        font-size: min(5vw, 5rem);
         color: var(--tertiary-text-colour);
         transform:rotate3d(1, 0, 0, 45deg);
         transition: all .4s cubic-bezier(0.075, 0.82, 0.165, 1);

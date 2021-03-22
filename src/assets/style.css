@@ -11,7 +11,7 @@
     /* piano styling */
     --piano-height: min(110px, 30vh);
     --white-key-width: calc(var(--piano-height)/3.3);
-    --white-key-border-width: .1vw;
+    --white-key-border-width: .01vw;
     --black-key-width: calc(var(--white-key-width)/2);
 
     --white-key-colour: rgb(240, 240, 240);

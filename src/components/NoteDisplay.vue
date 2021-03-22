@@ -24,9 +24,10 @@ export default {
 
 <style>
     #note-display {
-        position: absolute;
-        align-self: center;
-        font-size: min(10rem, 15vw);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: min(10rem, 12vw);
         user-select: none;
         color: var(--tertiary-text-colour);
     }

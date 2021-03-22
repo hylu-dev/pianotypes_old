@@ -81,28 +81,25 @@ export default {
 
 <style scoped>
     .ribbon-block {
-        position: relative;
         width: 100%;
         height: 100%;
         border-radius: .4vw;
+        box-shadow: 0 0 .3vw .1vw #111;
     }
 
     .ribbon-wrapper {
         position: absolute;
         width: 100%;
         height: calc(100% + 1rem);
-        box-shadow: 0 0 .5vw .1vw #111;
         box-sizing: none;
         bottom: 0;
     }
 
     .white-ribbon {
         background-color: var(--white-key-active-colour);
-        z-index: 0;
     }
 
     .black-ribbon {
-        background-color: var(--black-key-active-colour);;
-        z-index: 1;
+        background-color: var(--black-key-active-colour);
     }
 </style>
