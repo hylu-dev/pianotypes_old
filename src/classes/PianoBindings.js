@@ -101,4 +101,12 @@ export default class KeyBindingStore {
     updateBinding(key, note) {
         this.bindings[key] = note;
     }
+    isLeftHand(binding) {
+        if (this.mode == 1) {
+            return [...this.r1, ...this.r2].includes(binding);
+        } else if (this.mode == 2) {
+            return [...this.lr1, ...this.lr2, ...this.lr3, ...this.lr4].includes(binding);
+        }
+        return false;
+    }
 }

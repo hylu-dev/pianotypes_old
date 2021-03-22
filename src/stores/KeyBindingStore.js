@@ -3,7 +3,7 @@ import PianoBindings from '@/classes/PianoBindings'
 
 const KeyBindingStore = {
     state: reactive({
-        pianoBindings: new PianoBindings("G2")
+        pianoBindings: new PianoBindings("F2")
     })
 }
 

@@ -33,7 +33,7 @@ export default {
             }
         },
         upSustainPedal(e) {
-            if (e.keyCode == 32) {
+            if (e.keyCode == 32 && !e.shiftKey) {
                 this.sharedKeyboard.liftSustainPedal();
             }
         }

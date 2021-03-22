@@ -1,5 +1,7 @@
 <template>
-    <div ref="ribbon" v-if="active" :class="ribbonClasses"></div>
+    <div ref="ribbon" class="ribbon-wrapper" v-if="active">
+        <div class="ribbon-block" :class="ribbonClasses"></div>
+    </div>
 </template>
 
 <script>
@@ -78,14 +80,20 @@ export default {
 </script>
 
 <style scoped>
-    #ribbon {
+    .ribbon-block {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        border-radius: .4vw;
+    }
+
+    .ribbon-wrapper {
         position: absolute;
         width: 100%;
         height: calc(100% + 1rem);
-        box-sizing: none;
-        bottom: 0px;
         box-shadow: 0 0 .5vw .1vw #111;
-        border-radius: .3vw;
+        box-sizing: none;
+        bottom: 0;
     }
 
     .white-ribbon {

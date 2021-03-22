@@ -32,7 +32,8 @@ export default {
     data() {
         return {
             sharedKeyboard: PianoStateStore.state.keyboard,
-            sharedBindings: KeyBindingStore.state.pianoBindings
+            sharedBindings: KeyBindingStore.state.pianoBindings,
+            gain: 3
         }
     },
     methods: {
@@ -43,7 +44,9 @@ export default {
             }
             if (e.repeat) { return }
             let note = this.sharedBindings.getKeyNoteBinding(e.key);
-            if (note) { this.sharedKeyboard.pressKey(note); }   
+            let gain;
+            this.sharedBindings.isLeftHand(e.key) ? gain = 2 : gain = this.gain; //left hand quieter
+            if (note) { this.sharedKeyboard.pressKey(note, gain); }   
         },
         releaseKey(e) {
             if (e.repeat) { return }
@@ -51,7 +54,7 @@ export default {
             if (note) { this.sharedKeyboard.releaseKey(note); }
         },
         clickPressKey(note) {
-            if (note) { this.sharedKeyboard.pressKey(note); }  
+            if (note) { this.sharedKeyboard.pressKey(note, this.gain); }  
         },
         clickReleaseKey(note) {
             if (note) { this.sharedKeyboard.releaseKey(note); }

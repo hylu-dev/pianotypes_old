@@ -9,12 +9,10 @@ export default class PianoKeyboard {
         this.keyboardDict;
         this.sustainPedal;
         this.soundfont = musyngkite;
-        this.gain = 4;
         this.instrument = 'acoustic_grand_piano';
         this.player = require('soundfont-player').instrument(new AudioContext(), this.instrument, {
                 soundfont: 'MusyngKite',
-                gain: this.gain,
-                sustain: 1
+                release: 2
                 });
         this.gainNodes = {};
         this.lastKey = "";
@@ -33,11 +31,11 @@ export default class PianoKeyboard {
         return this.keyboardDict;
     }
     //keys
-    pressKey(note) {
+    pressKey(note, gain) {
         if (!(this.keyboardDict[note] || this.keyboardDict[Note.enharmonic(note)])) { return; } //Check note is part of piano range
         this.keyboardDict[note].isPressed = this.keyboardDict[Note.enharmonic(note)].isPressed = true;
         if (this.gainNodes[note]) { this.gainNodes[note].stop(); }
-        this.player.then((instr) => { this.gainNodes[note] = instr.play(note, 0, 1); });
+        this.player.then((instr) => { this.gainNodes[note] = instr.play(note, 0, {'gain': gain}); });
         this.lastKey = note;
     }
     releaseKey(note) {
