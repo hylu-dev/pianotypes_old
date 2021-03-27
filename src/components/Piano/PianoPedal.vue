@@ -76,7 +76,7 @@ export default {
     .icon-soft-pedal, .icon-sostenuto-pedal, .icon-sustain-pedal {
         font-size: min(5vw, 5rem);
         color: var(--tertiary-text-colour);
-        transform:rotate3d(1, 0, 0, 45deg);
+        transform: rotate3d(1, 0, 0, 45deg);
         transition: all .4s cubic-bezier(0.075, 0.82, 0.165, 1);
     }
 
@@ -86,5 +86,6 @@ export default {
 
     .pressed {
         color: var(--primary-text-colour);
+        transform: rotate3d(1, 0, 0, 50deg);
     }
 </style>

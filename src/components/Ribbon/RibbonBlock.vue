@@ -38,7 +38,7 @@ export default {
         releaseRibbon() {
             this.ribbonAnimation.oncancel = () => {
                 let anime = this.el.animate(this.ribbonRelease, this.ribbonDuration);
-                anime.onfinish = this.emitDestroy;   
+                anime.onfinish = this.emitDestroy;
             };
             this.el.style.height = this.ribbonHeight;
             requestAnimationFrame(() => {
