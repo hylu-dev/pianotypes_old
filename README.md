@@ -1,5 +1,8 @@
 # pianotype
 
+Minimal Online Piano
+www.pianotypes.com
+
 ## Project setup
 ```
 npm install
