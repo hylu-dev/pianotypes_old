@@ -1,5 +1,10 @@
 <template>
   <div class="grid-container">
+    <tabs id="tabs">
+      <div class="icon-filled-panel"></div>
+      <div class="icon-ribbon-panel-invert"></div>
+      <div class="icon-typing-panel-invert"></div>
+    </tabs>
     <note-display v-if="renderDisplay" id="note-display"></note-display>
     <ribbon-panel v-if="renderRibbonPanel" id="ribbon-panel"></ribbon-panel>
     <piano-pedal v-if="renderPedal" id="piano-pedal"></piano-pedal>
@@ -10,10 +15,11 @@
 
 <script>
 import { defineAsyncComponent } from 'vue'
-import PianoKeyboard from '../components/Piano/PianoKeyboard'
-import PianoController from '../components/Piano/PianoController'
-import PianoPedal from '../components/Piano/PianoPedal'
-import RibbonPanel from '../components/Ribbon/RibbonPanel'
+import PianoKeyboard from '@/components/Piano/PianoKeyboard'
+import PianoController from '@/components/Piano/PianoController'
+import PianoPedal from '@/components/Piano/PianoPedal'
+import RibbonPanel from '@/components/Ribbon/RibbonPanel'
+import Tabs from '@/components/Tabs'
 
 export default {
   name: 'Home',
@@ -24,7 +30,6 @@ export default {
       renderPedal: true,
       renderPiano: true,
       renderController: true,
-      windowWidth: 0
     }
   },
   components: {
@@ -32,6 +37,7 @@ export default {
     PianoController,
     PianoPedal,
     RibbonPanel,
+    Tabs,
     NoteDisplay: defineAsyncComponent(() => import(/* webpackChunkName: "note-display" */ '../components/NoteDisplay'))
   }
 }
@@ -47,6 +53,26 @@ export default {
     grid-template-areas: 
     "panel-left main-panel panel-right"
     "piano-left piano piano-right";
+  }
+
+  .icon-filled-panel, .icon-ribbon-panel-invert, .icon-typing-panel-invert {
+    font-size: 2rem;
+    transition: all .3s cubic-bezier(0.075, 0.82, 0.165, 1);
+  }
+
+  .icon-filled-panel:hover, .icon-ribbon-panel-invert:hover, .icon-typing-panel-invert:hover {
+    filter: brightness(1.1);
+    transform: scale(1.1);
+  }
+
+  #tabs {
+    grid-area: main-panel;
+    place-self: start right;
+    min-width:50px;
+    min-height: 50px;
+    margin: 1rem;
+    background: var(--secondary-bg-colour);
+    border-radius: 5px;
   }
 
   #note-display {

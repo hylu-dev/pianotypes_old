@@ -6,9 +6,9 @@
             <input type="text" id="max" v-model="this.maxNote" maxlength="3" @keypress.enter="$event.target.blur()">
         </div>
         <div class="input-container">
-            <div class="temp" :class="{temp__active: isNormalMode}" @click="setNormalMode"></div>
-            <input type="text" id="max" v-model="this.noteBinding" maxlength="3" @keypress.enter="$event.target.blur()">
-            <div class="temp" :class="{temp__active: isSplitMode}" @click="setSplitMode"></div>
+            <!-- <input type="text" id="max" v-model="this.noteBinding" maxlength="3" @keypress.enter="$event.target.blur()"> -->
+            <div class="icon-keyboard-invert" :class="{'icon--active': isNormalMode}" @click="setNormalMode"></div>
+            <div class="icon-split-keyboard-invert" :class="{'icon--active': isSplitMode}" @click="setSplitMode"></div>
         </div> 
     </div>
 </template>
@@ -52,12 +52,10 @@ export default {
                 this.sharedKeyboard.setMin(Note.transpose(this.sharedKeyboard.getMin(), interval))
             }
         },
-        setNormalMode(e) {
-            console.log(e);
+        setNormalMode() {
             this.sharedBindings.setMode(1);
         },
-        setSplitMode(e) {
-            console.log(e);
+        setSplitMode() {
             this.sharedBindings.setMode(2);
         }
     },
@@ -103,6 +101,8 @@ export default {
         justify-content: center;
         flex-flow: column;
         user-select: none;
+        padding: 1rem;
+        gap: 1ch;
     }
 
     .input-container {
@@ -110,9 +110,9 @@ export default {
         justify-content: center;
         align-items: center;
         flex-flow: row;
-        padding: .5vw;
-        gap: 1vw;
         font-size: 2vw;
+        border: none;
+        gap: 1vw;
     }
 
     input[type=text] {
@@ -123,20 +123,16 @@ export default {
         font-weight: 600;
     }
 
-    .temp {
-        width: 2ch;
-        height: 1ch;
-        border-radius: 5px;
-        background: var(--secondary-text-colour);
-        transition: all .4s cubic-bezier(0.075, 0.82, 0.165, 1);
+    .icon-keyboard-invert, .icon-split-keyboard-invert {
+        font-size: 2vw;
+        color: var(--secondary-text-colour);
+        transition: all .3s cubic-bezier(0.075, 0.82, 0.165, 1);
     }
-    .temp:hover {
-        filter: brightness(0.8);
-
+    .icon-keyboard-invert:hover, .icon-split-keyboard-invert:hover {
+        filter: brightness(1.1);
+        transform: scale(1.1);
     }
-    .temp__active {
-        background: var(--primary-text-colour);
-        box-shadow: inset 0 0 3px black;
-        filter: brightness(0.8);
+    .icon--active {
+        color: var(--primary-text-colour);
     }
 </style>

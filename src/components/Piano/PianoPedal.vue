@@ -77,11 +77,12 @@ export default {
         font-size: min(5vw, 5rem);
         color: var(--tertiary-text-colour);
         transform: rotate3d(1, 0, 0, 45deg);
-        transition: all .4s cubic-bezier(0.075, 0.82, 0.165, 1);
+        transition: all .3s cubic-bezier(0.075, 0.82, 0.165, 1);
     }
 
     .icon-soft-pedal:hover, .icon-sostenuto-pedal:hover, .icon-sustain-pedal:hover {
         filter: brightness(1.3);
+        transform: rotate3d(1, 0, 0, 50deg);
     }
 
     .pressed {
