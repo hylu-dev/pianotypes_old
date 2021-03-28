@@ -83,7 +83,7 @@ export default {
     .ribbon-block {
         width: 100%;
         height: 100%;
-        border-radius: .4vw;
+        border-radius: 5px;
         box-shadow: 0 0 .3vw .1vw #111;
     }
 
