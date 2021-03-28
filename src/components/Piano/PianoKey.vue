@@ -69,8 +69,10 @@ export default {
 
 <style scoped>
     #piano-key {
+        box-sizing: border-box;
         display: flex;
         justify-content: center;
+        transition: all .5s cubic-bezier(0.075, 0.82, 0.165, 1);
     }
 
     .offset-key {
@@ -98,17 +100,19 @@ export default {
     .white-key--hover {
         background: var(--white-key-hover-colour);
         background-clip: padding-box;
+        padding-bottom: .5ch;
     }
 
     .white-key--pressed {
         background: var(--white-key-active-colour);
         background-clip: padding-box;
+        padding-bottom: .5ch;
     }
 
     .black-key {
+        background: var(--black-key-colour);
         min-width: var(--black-key-width);
         height: 50%;
-        background: var(--black-key-colour);
         z-index: 3;
         box-shadow: 0px 1px 3px rgba(0,0,0,0.5);
     }
@@ -124,9 +128,12 @@ export default {
 
     .black-key--hover {
         background: var(--black-key-hover-colour);
+        padding-bottom: .5ch;
     }
 
     .black-key--pressed {
+        color: rgba(255, 255, 255, 1) !important;
         background: var(--black-key-active-colour);
+        padding-bottom: .5ch;
     }
 </style>
