@@ -82,6 +82,11 @@ select {
     font-family: 'Source Code Pro', Helvetica, Arial, sans-serif;
 }
 
+select:focus {
+    color: var(--primary-text-colour);
+    border: 2px solid var(--primary-text-colour);
+}
+
 /* responsive stylings */
 *:focus {
     outline: none;

@@ -1,7 +1,7 @@
 <template>
     <div class="flex-col-container">
         <div class="flex-row-container">
-            <select v-model="this.selectedInstrument">
+            <select v-model="this.selectedInstrument" @keypress.enter="$event.target.blur()">
                 <option v-for="instr in instruments" :key="instr">{{ instr }}</option>
             </select>
         </div>
