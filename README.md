@@ -1,4 +1,7 @@
-# pianotype
+# pianotypes
+
+Minimal Online Piano
+www.pianotypes.com
 
 ## Project setup
 ```
