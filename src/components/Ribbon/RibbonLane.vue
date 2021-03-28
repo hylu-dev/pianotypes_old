@@ -72,6 +72,7 @@ export default {
         display: flex;
         justify-content: center;
         height: 100%;
+        box-sizing: border-box;
     }
 
     .offset-key {
