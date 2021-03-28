@@ -1,11 +1,16 @@
 <template>
-    <div class="flex-container">
-        <div class="input-container">
+    <div class="flex-col-container">
+        <div class="flex-row-container">
+            <select v-model="this.selectedInstrument">
+                <option v-for="instr in instruments" :key="instr">{{ instr }}</option>
+            </select>
+        </div>
+        <div class="flex-row-container">
             <input type="text" id="min" v-model="this.minNote" maxlength="3" @keypress.enter="$event.target.blur()">
             ›
             <input type="text" id="max" v-model="this.maxNote" maxlength="3" @keypress.enter="$event.target.blur()">
         </div>
-        <div class="input-container">
+        <div class="flex-row-container">
             <!-- <input type="text" id="max" v-model="this.noteBinding" maxlength="3" @keypress.enter="$event.target.blur()"> -->
             <div class="icon-keyboard-invert" :class="{'icon--active': isNormalMode}" @click="setNormalMode"></div>
             <div class="icon-split-keyboard-invert" :class="{'icon--active': isSplitMode}" @click="setSplitMode"></div>
@@ -17,6 +22,7 @@
 import PianoStateStore from '@/stores/PianoStateStore'
 import KeyBindingStore from '@/stores/KeyBindingStore'
 import { Note } from "@tonaljs/tonal";
+import instrumentsJSON from "@/json/musyngkite.json"
 
 export default {
     created() {
@@ -29,7 +35,8 @@ export default {
     data() {
         return {
             sharedKeyboard: PianoStateStore.state.keyboard,
-            sharedBindings: KeyBindingStore.state.pianoBindings
+            sharedBindings: KeyBindingStore.state.pianoBindings,
+            instruments: instrumentsJSON
         }
     },
     methods: {
@@ -60,6 +67,14 @@ export default {
         }
     },
     computed: {
+        selectedInstrument: {
+            set(instrument) {
+                this.sharedKeyboard.setInstrument(instrument)
+            },
+            get() {
+                return this.sharedKeyboard.getInstrument();
+            }
+        },
         minNote: {
             set(minNote) {
                 this.sharedKeyboard.setMin(minNote)
@@ -96,7 +111,7 @@ export default {
 </script>
 
 <style>
-    .flex-container {
+    .flex-col-container {
         display: flex;
         justify-content: center;
         flex-flow: column;
@@ -105,9 +120,9 @@ export default {
         gap: 1ch;
     }
 
-    .input-container {
+    .flex-row-container {
         display: flex;
-        justify-content: center;
+        justify-content: space-evenly;
         align-items: center;
         flex-flow: row;
         font-size: 2vw;
@@ -123,15 +138,22 @@ export default {
         font-weight: 600;
     }
 
+    select {
+        font-size: clamp(1vw, 1rem);
+        width: 95%;
+    }
+
     .icon-keyboard-invert, .icon-split-keyboard-invert {
         font-size: 2vw;
         color: var(--secondary-text-colour);
         transition: all .3s cubic-bezier(0.075, 0.82, 0.165, 1);
     }
+
     .icon-keyboard-invert:hover, .icon-split-keyboard-invert:hover {
         filter: brightness(1.1);
         transform: scale(1.1);
     }
+
     .icon--active {
         color: var(--primary-text-colour);
     }
