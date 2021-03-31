@@ -10,20 +10,25 @@ export default class PianoKeyboard {
         this.sustainPedal;
         this.soundfont = musyngkite;
         this.instrument = 'acoustic_grand_piano';
-        this.player;
+        this.player = require('soundfont-player').instrument(new AudioContext(), this.instrument, {
+            soundfont: 'MusyngKite',
+            release: 2
+        });
         this.gainNodes = {};
         this.lastKey = "";
         this.init();
     }
     init() {
         this.gainNodes = {};
+        this.player.then( (instr) => instr.stop());
+        this.keyboard = Note.sortedNames(Range.chromatic([this.minNote, this.maxNote]));
+        this.keyboardDict = this.keyboard.reduce((arr,curr) => (arr[curr]={}, arr[Note.enharmonic(curr)]={}, arr), {})
+    }
+    updateInstrument() {
         this.player = require('soundfont-player').instrument(new AudioContext(), this.instrument, {
             soundfont: 'MusyngKite',
             release: 2
         });
-        this.player.then( (instr) => instr.stop());
-        this.keyboard = Note.sortedNames(Range.chromatic([this.minNote, this.maxNote]));
-        this.keyboardDict = this.keyboard.reduce((arr,curr) => (arr[curr]={}, arr[Note.enharmonic(curr)]={}, arr), {})
     }
     getKeyboard() {
         return this.keyboard;
@@ -74,7 +79,7 @@ export default class PianoKeyboard {
     }
     setInstrument(instrument) {
         this.instrument = instrument;
-        this.init();
+        this.updateInstrument();
     }
     //range
     getMin() {
