@@ -10,7 +10,8 @@ export default class PianoKeyboard {
         this.sustainPedal;
         this.soundfont = musyngkite;
         this.instrument = 'acoustic_grand_piano';
-        this.player = require('soundfont-player').instrument(new AudioContext(), this.instrument, {
+        this.ac = new AudioContext();
+        this.player = require('soundfont-player').instrument(this.ac, this.instrument, {
             soundfont: 'MusyngKite',
             release: 2
         });
@@ -25,7 +26,7 @@ export default class PianoKeyboard {
         this.keyboardDict = this.keyboard.reduce((arr,curr) => (arr[curr]={}, arr[Note.enharmonic(curr)]={}, arr), {})
     }
     updateInstrument() {
-        this.player = require('soundfont-player').instrument(new AudioContext(), this.instrument, {
+        this.player = require('soundfont-player').instrument(this.ac, this.instrument, {
             soundfont: 'MusyngKite',
             release: 2
         });
