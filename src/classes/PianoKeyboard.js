@@ -10,7 +10,7 @@ export default class PianoKeyboard {
         this.sustainPedal;
         this.soundfont = musyngkite;
         this.instrument = 'acoustic_grand_piano';
-        this.ac = new AudioContext();
+        this.ac = window.AudioContext || window.webkitAudioContext;
         this.player = require('soundfont-player').instrument(this.ac, this.instrument, {
             soundfont: 'MusyngKite',
             release: 2
@@ -20,6 +20,11 @@ export default class PianoKeyboard {
         this.init();
     }
     init() {
+        this.ac = new AudioContext();
+        this.updateInstrument();
+        this.updateKeyboard();
+    }
+    updateKeyboard() {
         this.gainNodes = {};
         this.player.then( (instr) => instr.stop());
         this.keyboard = Note.sortedNames(Range.chromatic([this.minNote, this.maxNote]));
@@ -89,7 +94,7 @@ export default class PianoKeyboard {
     setMin(note) {
         if (Note.octave(note) >= 0 && Note.octave(note) < 9) {
             this.minNote = Note.simplify(note);
-            this.init();
+            this.updateKeyboard();
         }
     }
     getMax() {
@@ -98,7 +103,7 @@ export default class PianoKeyboard {
     setMax(note) {
         if (Note.octave(note) >= 0 && Note.octave(note) < 9) {
             this.maxNote = Note.simplify(note);
-            this.init();
+            this.updateKeyboard();
         }
     }
   }
