@@ -24,9 +24,8 @@ export default {
 
 <style>
     #note-display {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        display: grid;
+        place-items: center center;
         font-size: min(10rem, 12vw);
         user-select: none;
         color: var(--tertiary-text-colour);
