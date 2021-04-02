@@ -60,19 +60,14 @@ export default {
     transition: all .3s cubic-bezier(0.075, 0.82, 0.165, 1);
   }
 
-  .icon-filled-panel:hover, .icon-ribbon-panel-invert:hover, .icon-typing-panel-invert:hover {
+  /* .icon-filled-panel:hover, .icon-ribbon-panel-invert:hover, .icon-typing-panel-invert:hover {
     filter: brightness(1.1);
     transform: scale(1.1);
-  }
+  } */
 
   #tabs {
     grid-area: main-panel;
     place-self: start right;
-    min-width:50px;
-    min-height: 50px;
-    margin: 1rem;
-    background: var(--secondary-bg-colour);
-    border-radius: 5px;
   }
 
   #note-display {
