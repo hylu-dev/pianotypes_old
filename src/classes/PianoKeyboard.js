@@ -10,15 +10,16 @@ export default class PianoKeyboard {
         this.sustainPedal;
         this.soundfont = musyngkite;
         this.instrument = 'acoustic_grand_piano';
-        this.ac = window.webkitAudioContext || window.AudioContext || false;
+        this.ac;
         this.player;
         this.gainNodes = {};
         this.lastKey = "";
         this.init();
     }
     init() {
-        if (this.ac) {
-            this.ac = new AudioContext();
+        let a = window.AudioContext || window.webkitAudioContext || false;
+        if (a) {
+            this.ac = new a;
         }
         this.updateInstrument();
         this.updateKeyboard();
