@@ -60,7 +60,7 @@ export default {
             if (note) { this.sharedKeyboard.releaseKey(note); }
         },
         clearKeyStates() {
-            this.sharedKeyboard.init()
+            this.sharedKeyboard.updateKeyboard()
         }
     }
 }

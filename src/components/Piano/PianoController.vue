@@ -44,17 +44,17 @@ export default {
             let interval;
             e.shiftKey ? interval = "8P" : interval = "2m";
             if (e.keyCode == 37) {
-                this.sharedKeyboard.init();
+                this.sharedKeyboard.updateKeyboard();
                 this.sharedBindings.setBase(Note.transpose(this.sharedBindings.getBase(), "-"+interval))
             } else if (e.keyCode == 39) {
-                this.sharedKeyboard.init();
+                this.sharedKeyboard.updateKeyboard();
                 this.sharedBindings.setBase(Note.transpose(this.sharedBindings.getBase(), interval))
             } else if (e.keyCode == 38) {
-                this.sharedKeyboard.init();
+                this.sharedKeyboard.updateKeyboard();
                 this.sharedKeyboard.setMax(Note.transpose(this.sharedKeyboard.getMax(), interval))
                 this.sharedKeyboard.setMin(Note.transpose(this.sharedKeyboard.getMin(), "-"+interval))
             } else if (e.keyCode == 40) {
-                this.sharedKeyboard.init();
+                this.sharedKeyboard.updateKeyboard();
                 this.sharedKeyboard.setMax(Note.transpose(this.sharedKeyboard.getMax(), "-"+interval))
                 this.sharedKeyboard.setMin(Note.transpose(this.sharedKeyboard.getMin(), interval))
             }
