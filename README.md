@@ -43,4 +43,4 @@ Folder structure follows the standard VueJS CLI project creation. The primary co
   -  **src/classes**
      - The state managed in the aforementioned stores above are modeled using the classes in this directory. In particular, most of the state code is really here
 - **src/assets/style.css**
-  - Global stylings are stored here. Any further stylings are done within the component themselves between <style><style/> tags. Generally, any files ending in .vue have local styling
+  - Global stylings are stored here. Any further stylings are done within the component themselves between <style></style> tags. Generally, any files ending in .vue have local styling
