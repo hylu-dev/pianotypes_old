@@ -28,7 +28,7 @@ A demo can be viewed on https://www.hylu.dev/projects.html#section2.
 
 ### Involvement
 
-This is a solo project is designed and programmed by Roy Lu (me). Notable dependencies include [tonal.js](https://www.npmjs.com/package/tonal) for music theory calculations and [soundfont-player](https://www.npmjs.com/package/soundfont-player) to supply instrumental sounds.
+This is a solo project designed and programmed by Roy Lu (me). Notable dependencies include [tonal.js](https://www.npmjs.com/package/tonal) for music theory calculations and [soundfont-player](https://www.npmjs.com/package/soundfont-player) to supply instrumental sounds.
 
 ### Code Highlights
 
