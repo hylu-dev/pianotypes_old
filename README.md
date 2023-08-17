@@ -4,9 +4,7 @@
 _Minimalist Online Piano_
 
 A virtual piano that provides a full-range, customizable piano. The piano can be played either using your mouse or with your keyboard.
-
-The project is currently hosted on <https://pianotypes.netlify.app/>.
-A demo can be viewed on https://www.hylu.dev/projects.html#section2.
+**Succeeded by https://github.com/hylu-dev/pianotypes**
 
 
 ## Features
